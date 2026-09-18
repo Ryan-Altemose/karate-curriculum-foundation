@@ -1,0 +1,25 @@
+{
+  "expo": {
+    "name": "Karate Curriculum",
+    "slug": "karate-curriculum",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "automatic",
+    "scheme": "karatecurriculum",
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {},
+    "web": {},
+    "plugins": [
+      "expo-router",
+      "expo-status-bar"
+    ],
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "c7060acb-04b8-4037-b344-2dc9ff48c7fb"
+      }
+    }
+  }
+}
