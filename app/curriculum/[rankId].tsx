@@ -1,6 +1,10 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { getRankById } from "../../src/data/curriculum";
+import CatalogRow from "../../src/components/CatalogRow";
+import { isItemUnlocked } from "../../src/data/access";
+import { currentStudent } from "../../src/data/student";
+import BeltSwatch from "../../src/components/BeltSwatch";
 
 export default function RankRequirementsScreen() {
   const { rankId } = useLocalSearchParams<{ rankId: string }>();
@@ -15,18 +19,26 @@ export default function RankRequirementsScreen() {
     );
   }
 
+  const currentRank = getRankById(currentStudent.currentRankId);
+  const locked = currentRank ? rank.order > currentRank.order : false;
+
   return (
     <ScrollView contentContainerStyle={styles.container}>
-      <Text style={styles.title}>{rank.name}</Text>
+      <View style={styles.titleRow}>
+        <Text style={styles.title}>{rank.name}</Text>
+        <BeltSwatch rankId={rank.id} degree={rank.degree} width={64} height={16} locked={locked} style={{ marginLeft: 12 }} />
+      </View>
       <Text style={styles.subtitle}>Main requirements for this rank</Text>
       <View style={styles.list}>
         {rank.requirements.map((requirement) => (
           <View key={requirement.id} style={styles.requirementCard}>
             <Text style={styles.requirementName}>{requirement.name}</Text>
             {requirement.items.length > 0 ? (
-              requirement.items.map((item) => (
-                <Text key={item} style={styles.requirementItem}>• {item}</Text>
-              ))
+              requirement.items.filter(Boolean).map((item: any) => {
+                return (
+                  <CatalogRow key={item.id} item={item} category={requirement.category} />
+                );
+              })
             ) : (
               <Text style={styles.emptyRequirement}>Curriculum details will be added soon.</Text>
             )}
@@ -43,7 +55,15 @@ const styles = StyleSheet.create({
   title: { fontSize: 30, fontWeight: "700", color: "#111", marginBottom: 8 },
   subtitle: { fontSize: 15, color: "#666", marginBottom: 24 },
   list: { gap: 10 },
-  requirementCard: { paddingHorizontal: 18, paddingVertical: 16, backgroundColor: "#fff", borderRadius: 12, borderWidth: 1, borderColor: "#ddd" },
+  titleRow: { flexDirection: "row", alignItems: "center", marginBottom: 8 },
+  requirementCard: {
+    paddingHorizontal: 0,
+    paddingVertical: 8,
+    backgroundColor: "transparent",
+    borderRadius: 0,
+    borderWidth: 0,
+    borderColor: "transparent",
+  },
   requirementName: { fontSize: 18, fontWeight: "600", color: "#111" },
   requirementItem: { marginTop: 8, fontSize: 15, lineHeight: 21, color: "#333" },
   emptyRequirement: { marginTop: 8, fontSize: 14, color: "#777", fontStyle: "italic" },

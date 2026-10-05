@@ -7,7 +7,11 @@
     "userInterfaceStyle": "automatic",
     "scheme": "karatecurriculum",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.devmoose14.karatecurriculum",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
     },
     "android": {},
     "web": {},
