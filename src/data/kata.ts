@@ -31,7 +31,7 @@ export const kataCatalog: Kata[] = [
     { id: "rohai", name: "Rohai", order: 16, minimumRankOrder: 15 },
     { id: "wanshu", name: "Wanshu", order: 17, minimumRankOrder: 16 },
     { id: "passai", name: "Passai", order: 18, minimumRankOrder: 17 },
-    { id: "gojushiho", name: "Gojushiho", order: 19, minimumRankOrder: 18, videoAsset: require("../../app/assets/videos/gojushiho_tournament.mp4") },
+    { id: "gojushiho", name: "Gojushiho", order: 19, minimumRankOrder: 18, videoAsset: require("../../assets/videos/gojushiho_tournament.mp4") },
     { id: "chinto", name: "Chinto", order: 20, minimumRankOrder: 19 },
     { id: "kusanku", name: "Kusanku", order: 21, minimumRankOrder: 20 },
 

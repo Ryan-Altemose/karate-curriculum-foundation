@@ -4,31 +4,28 @@ import { Ionicons } from "@expo/vector-icons";
 
 type ContentAccessRowProps = {
   label: string;
-  locked: boolean;
   onPress?: () => void;
 };
 
-export default function ContentAccessRow({ label, locked, onPress }: ContentAccessRowProps) {
+export default function ContentAccessRow({ label, onPress }: ContentAccessRowProps) {
   return (
     <Pressable
-      disabled={locked}
+      accessibilityRole="button"
+      accessibilityLabel={label}
+      disabled={!onPress}
       onPress={onPress}
       style={({ pressed }: { pressed: boolean }) => [
         styles.row,
-        locked && styles.lockedRow,
-        pressed && !locked && styles.pressed,
+        pressed && styles.pressed,
       ]}
     >
       <View style={styles.content}> 
-        <Text style={[styles.label, locked && styles.lockedText]}>{label}</Text>
-        <Text style={[styles.status, locked && styles.lockedText]}>
-          {locked ? "Unavailable" : "Available"}
-        </Text>
+        <Text style={styles.label}>{label}</Text>
       </View>
       <Ionicons
-        name={locked ? "lock-closed-outline" : "chevron-forward"}
+        name="chevron-forward"
         size={22}
-        color={locked ? "#999" : "#222"}
+        color="#222"
       />
     </Pressable>
   );
@@ -48,10 +45,6 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
     marginTop: 8,
   },
-  lockedRow: {
-    backgroundColor: "#e9e9e9",
-    borderColor: "#ddd",
-  },
   content: {
     flex: 1,
     marginRight: 12,
@@ -60,14 +53,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "600",
     color: "#111",
-  },
-  status: {
-    marginTop: 4,
-    fontSize: 13,
-    color: "#777",
-  },
-  lockedText: {
-    color: "#999",
   },
   pressed: {
     opacity: 0.7,

@@ -2,8 +2,6 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import { getRankById } from "../../src/data/curriculum";
 import CatalogRow from "../../src/components/CatalogRow";
-import { isItemUnlocked } from "../../src/data/access";
-import { currentStudent } from "../../src/data/student";
 import BeltSwatch from "../../src/components/BeltSwatch";
 
 export default function RankRequirementsScreen() {
@@ -19,14 +17,11 @@ export default function RankRequirementsScreen() {
     );
   }
 
-  const currentRank = getRankById(currentStudent.currentRankId);
-  const locked = currentRank ? rank.order > currentRank.order : false;
-
   return (
     <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.titleRow}>
         <Text style={styles.title}>{rank.name}</Text>
-        <BeltSwatch rankId={rank.id} degree={rank.degree} width={64} height={16} locked={locked} style={{ marginLeft: 12 }} />
+        <BeltSwatch rankId={rank.id} degree={rank.degree} width={64} height={16} style={{ marginLeft: 12 }} />
       </View>
       <Text style={styles.subtitle}>Main requirements for this rank</Text>
       <View style={styles.list}>
@@ -34,7 +29,7 @@ export default function RankRequirementsScreen() {
           <View key={requirement.id} style={styles.requirementCard}>
             <Text style={styles.requirementName}>{requirement.name}</Text>
             {requirement.items.length > 0 ? (
-              requirement.items.filter(Boolean).map((item: any) => {
+              requirement.items.map((item) => {
                 return (
                   <CatalogRow key={item.id} item={item} category={requirement.category} />
                 );

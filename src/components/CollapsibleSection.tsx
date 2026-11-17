@@ -13,7 +13,7 @@ export default function CollapsibleSection({ title, children, initiallyOpen = fa
 
   return (
     <View style={styles.container}>
-      <Pressable style={styles.header} onPress={() => setOpen((s) => !s)}>
+      <Pressable accessibilityRole="button" accessibilityLabel={title} accessibilityState={{ expanded: open }} style={styles.header} onPress={() => setOpen((s) => !s)}>
         <View style={styles.headerInner}>
           <Text style={styles.title}>{title}</Text>
         </View>

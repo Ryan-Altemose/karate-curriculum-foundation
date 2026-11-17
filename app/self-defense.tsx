@@ -1,14 +1,9 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import CatalogRow from "../src/components/CatalogRow";
-import { getRankById } from "../src/data/curriculum";
-import { currentStudent } from "../src/data/student";
 import { selfDefenseCatalog } from "../src/data/self-defense";
 
 export default function SelfDefenseScreen() {
-  const currentRank = getRankById(currentStudent.currentRankId);
-  const currentRankOrder = currentRank?.order ?? 0;
-
   return React.createElement(
     ScrollView,
     { contentContainerStyle: styles.container },

@@ -3,6 +3,7 @@ export type SelfDefense = {
   name: string;
   order: number;
   notes?: string;
+  videoUrl?: string;
   minimumRankOrder?: number;
 };
 

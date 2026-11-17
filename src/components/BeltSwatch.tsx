@@ -7,7 +7,6 @@ type Props = {
   degree?: number;
   width?: number;
   height?: number;
-  locked?: boolean;
   style?: ViewStyle;
 };
 
@@ -23,7 +22,7 @@ const fullBlackNames = [
   "kudan",
 ];
 
-export default function BeltSwatch({ rankId, degree, width = 64, height = 14, locked, style }: Props) {
+export default function BeltSwatch({ rankId, degree, width = 64, height = 14, style }: Props) {
   const isBlack = rankId.endsWith("-ho") || fullBlackNames.includes(rankId);
   const visual = getBeltVisual(rankId, degree);
 
@@ -31,7 +30,6 @@ export default function BeltSwatch({ rankId, degree, width = 64, height = 14, lo
     <View
       style={[
         { width, height, overflow: "hidden", borderWidth: 1, borderColor: "#777" },
-        locked && { opacity: 0.35 },
         // Black belts should run horizontally across the swatch; non-black vertical
         isBlack ? styles.row : styles.column,
         style,

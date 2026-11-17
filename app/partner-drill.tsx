@@ -1,14 +1,9 @@
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import CatalogRow from "../src/components/CatalogRow";
-import { getRankById } from "../src/data/curriculum";
 import { partnerDrillCatalog } from "../src/data/partner-drill";
-import { currentStudent } from "../src/data/student";
 
 export default function PartnerDrillScreen() {
-  const currentRank = getRankById(currentStudent.currentRankId);
-  const currentRankOrder = currentRank?.order ?? 0;
-
   return React.createElement(
     ScrollView,
     { contentContainerStyle: styles.container },
