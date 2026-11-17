@@ -1,3 +1,4 @@
+import { colors, ui } from "../src/theme";
 import React from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
@@ -24,6 +25,7 @@ export default function CurriculumScreen() {
           accessibilityLabel: rank.name,
           onPress: () => router.push({ pathname: "/curriculum/[rankId]", params: { rankId: rank.id } }),
           style: ({ pressed }: { pressed: boolean }) => [
+            ui.card,
             styles.rankRow,
             pressed && styles.pressed,
           ],
@@ -40,13 +42,13 @@ export default function CurriculumScreen() {
             ? React.createElement(BeltSwatch, { rankId: rank.id, degree: rank.degree, style: styles.beltSwatch })
             : React.createElement(View, { style: styles.hiddenBeltSwatch })
         ),
-        React.createElement(Ionicons, { name: "chevron-forward", size: 22, color: "#222" })
+        React.createElement(Ionicons, { name: "chevron-forward", size: 22, color: colors.muted })
       )
     );
   };
 
   return (
-    React.createElement(ScrollView, { contentContainerStyle: styles.container },
+    React.createElement(ScrollView, { contentContainerStyle: [ui.screen, styles.container] },
       React.createElement(Text, { style: styles.title }, "Curriculum"),
       React.createElement(Text, { style: styles.subtitle }, "Browse requirements for every belt and rank."),
 
@@ -75,33 +77,30 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     paddingBottom: 40,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: colors.background,
     flexGrow: 1,
   },
   title: {
-    fontSize: 30,
+    fontSize: 28,
+    letterSpacing: -0.6,
     fontWeight: "700",
-    color: "#111",
+    color: colors.ink,
     marginBottom: 8,
   },
   subtitle: {
     fontSize: 15,
     lineHeight: 22,
-    color: "#666",
+    color: colors.muted,
     marginBottom: 24,
   },
   list: {
     gap: 10,
   },
-  fullDivider: { height: 1, backgroundColor: "#ddd", marginVertical: 12 },
+  fullDivider: { height: 0 },
   rankRow: {
     minHeight: 76,
     paddingHorizontal: 18,
     paddingVertical: 14,
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#ddd",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -127,8 +126,9 @@ const styles = StyleSheet.create({
     opacity: 0.7,
   },
   rankName: {
-    fontSize: 18,
+    fontSize: 16,
+    lineHeight: 23,
     fontWeight: "600",
-    color: "#111",
+    color: colors.ink,
   },
 });

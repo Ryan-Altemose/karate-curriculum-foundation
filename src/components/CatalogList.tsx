@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Pressable, ScrollView, StyleSheet, Switch, Text, TextInput, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import type { RequirementCategory } from "../data/rank";
+import { colors, ui } from "../theme";
 import CatalogRow from "./CatalogRow";
 
 type CatalogEntry = {
@@ -31,13 +32,13 @@ export default function CatalogList({ items, category }: Props) {
   if (reverseRankOrder) visibleItems.reverse();
 
   return (
-    <ScrollView contentContainerStyle={styles.container} keyboardShouldPersistTaps="handled">
+    <ScrollView contentContainerStyle={[ui.screen, styles.container]} keyboardShouldPersistTaps="handled">
       <View style={styles.searchBar}>
-        <Ionicons name="search-outline" size={22} color="#666" />
+        <Ionicons name="search-outline" size={22} color={colors.muted} />
         <TextInput
           accessibilityLabel="Search entries"
           placeholder="Search"
-          placeholderTextColor="#666"
+          placeholderTextColor={colors.muted}
           inputMode="search"
           returnKeyType="search"
           autoCapitalize="none"
@@ -79,17 +80,17 @@ export default function CatalogList({ items, category }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, padding: 20, paddingBottom: 40, backgroundColor: "#f5f5f5" },
+  container: { flexGrow: 1, padding: 20, paddingBottom: 40, backgroundColor: colors.background },
   searchBar: {
     flexDirection: "row",
     alignItems: "center",
     paddingLeft: 14,
-    backgroundColor: "#fff",
+    backgroundColor: colors.surface,
     borderWidth: 1,
-    borderColor: "#ccc",
-    borderRadius: 12,
+    borderColor: colors.border,
+    borderRadius: 16,
   },
-  searchInput: { flex: 1, minWidth: 0, minHeight: 48, paddingHorizontal: 10, fontSize: 16, color: "#111" },
+  searchInput: { flex: 1, minWidth: 0, minHeight: 52, paddingHorizontal: 10, fontSize: 16, color: colors.ink },
   clearButton: { minWidth: 44, minHeight: 48, justifyContent: "center", alignItems: "center" },
   sortRow: {
     flexDirection: "row",
@@ -98,9 +99,9 @@ const styles = StyleSheet.create({
     minHeight: 44,
     gap: 12,
     marginTop: 12,
-    marginBottom: 12,
+    marginBottom: 16,
   },
-  sortLabel: { flex: 1, fontSize: 14, fontWeight: "600", color: "#555" },
+  sortLabel: { flex: 1, fontSize: 14, fontWeight: "600", color: colors.muted },
   list: { gap: 10 },
-  emptyText: { marginTop: 24, fontSize: 16, lineHeight: 24, textAlign: "center", color: "#666" },
+  emptyText: { marginTop: 24, fontSize: 16, lineHeight: 24, textAlign: "center", color: colors.muted },
 });

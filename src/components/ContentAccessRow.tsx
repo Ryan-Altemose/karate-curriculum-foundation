@@ -1,5 +1,6 @@
 import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { colors, ui } from "../theme";
 import { Ionicons } from "@expo/vector-icons";
 
 type ContentAccessRowProps = {
@@ -15,6 +16,7 @@ export default function ContentAccessRow({ label, onPress }: ContentAccessRowPro
       disabled={!onPress}
       onPress={onPress}
       style={({ pressed }: { pressed: boolean }) => [
+        ui.card,
         styles.row,
         pressed && styles.pressed,
       ]}
@@ -22,24 +24,22 @@ export default function ContentAccessRow({ label, onPress }: ContentAccessRowPro
       <View style={styles.content}> 
         <Text style={styles.label}>{label}</Text>
       </View>
-      <Ionicons
-        name="chevron-forward"
-        size={22}
-        color="#222"
-      />
+      <View style={styles.chevron}>
+        <Ionicons
+          name="chevron-forward"
+          size={18}
+          color={colors.muted}
+        />
+      </View>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   row: {
-    minHeight: 76,
+    minHeight: 72,
     paddingHorizontal: 18,
     paddingVertical: 14,
-    backgroundColor: "#fff",
-    borderRadius: 12,
-    borderWidth: 1,
-    borderColor: "#ddd",
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "space-between",
@@ -50,11 +50,13 @@ const styles = StyleSheet.create({
     marginRight: 12,
   },
   label: {
-    fontSize: 18,
+    fontSize: 16,
+    lineHeight: 23,
     fontWeight: "600",
-    color: "#111",
+    color: colors.ink,
   },
+  chevron: { width: 30, height: 30, borderRadius: 15, backgroundColor: colors.background, alignItems: "center", justifyContent: "center" },
   pressed: {
-    opacity: 0.7,
+    opacity: 0.75,
   },
 });

@@ -1,3 +1,4 @@
+import { colors } from "../theme";
 import { useEvent } from "expo";
 import { useVideoPlayer, VideoView } from "expo-video";
 import { StyleSheet, Text, View } from "react-native";
@@ -11,7 +12,7 @@ export default function DemonstrationVideo({ source }: Props) {
   if (source === undefined) {
     return (
       <View style={styles.placeholder}>
-        <Ionicons name="play-circle" size={64} color="#fff" />
+        <View style={styles.playBadge}><Ionicons name="play-outline" size={28} color={colors.muted} /></View>
         <Text style={styles.message}>No video available</Text>
       </View>
     );
@@ -48,12 +49,15 @@ const styles = StyleSheet.create({
   video: { width: "100%", aspectRatio: 16 / 9, backgroundColor: "#000", borderRadius: 12 },
   placeholder: {
     height: 200,
-    backgroundColor: "#000",
-    borderRadius: 12,
+    backgroundColor: colors.inset,
+    borderWidth: 1,
+    borderColor: colors.border,
+    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 18,
   },
-  message: { color: "#fff", marginTop: 8 },
+  playBadge: { width: 60, height: 60, borderRadius: 30, backgroundColor: colors.surface, alignItems: "center", justifyContent: "center" },
+  message: { color: colors.muted, fontSize: 14, marginTop: 14 },
   error: { color: "#b91c1c", fontSize: 14, lineHeight: 20, marginTop: 8 },
 });

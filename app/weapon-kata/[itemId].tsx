@@ -1,3 +1,4 @@
+import { colors, ui } from "../../src/theme";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
@@ -18,7 +19,7 @@ export default function WeaponKataItemPage() {
   }
 
   return (
-    <ScrollView contentContainerStyle={styles.container}>
+    <ScrollView contentContainerStyle={[ui.screen, styles.container]}>
       <Text style={styles.title}>{item.name}</Text>
 
       <DemonstrationVideo source={item.videoUrl} />
@@ -34,12 +35,12 @@ export default function WeaponKataItemPage() {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: "#f5f5f5",
+    backgroundColor: colors.background,
     paddingBottom: 60,
   },
   center: { flex: 1, justifyContent: "center", alignItems: "center", padding: 20 },
-  title: { fontSize: 28, fontWeight: "700", marginBottom: 16, color: "#111" },
-  section: { marginTop: 6 },
+  title: { ...ui.title, marginBottom: 16, color: colors.ink },
+  section: { ...ui.card, padding: 20, marginTop: 6 },
   sectionTitle: { fontSize: 16, fontWeight: "600", marginBottom: 8 },
-  description: { fontSize: 15, lineHeight: 22, color: "#333" },
+  description: { fontSize: 15, lineHeight: 24, color: colors.muted },
 });
