@@ -408,11 +408,7 @@ const rankSpecs: RankSpec[] = [
     requirements: {
       kata: [getKataItemById("pinan-godan")!],
       weaponKata: [
-        getWeaponKataItemById("escrima-pattern-1")!,
-        getWeaponKataItemById("escrima-pattern-2")!,
-        getWeaponKataItemById("six-count-one-stick")!,
-        getWeaponKataItemById("four-count-two-stick")!,
-        getWeaponKataItemById("six-count-two-stick")!,
+        getWeaponKataItemById("escrima-stick-patterns")!,
       ],
       partnerDrill: [
         getPartnerDrillItemById("promise-kumite-1")!, 
@@ -445,13 +441,7 @@ const rankSpecs: RankSpec[] = [
     requirements: {
       kata: [getKataItemById("naihanchi-nidan")!],
       weaponKata: [
-        getWeaponKataItemById("tonfa-kihon-1")!,
-        getWeaponKataItemById("tonfa-kihon-2")!,
-        getWeaponKataItemById("tonfa-kihon-3")!,
-        getWeaponKataItemById("tonfa-kihon-4")!,
-        getWeaponKataItemById("tonfa-kihon-5")!,
-        getWeaponKataItemById("tonfa-kihon-6")!,
-        getWeaponKataItemById("tonfa-kihon-7")!,
+        getWeaponKataItemById("tonfa-kihon", { name: "Tonfa Kihon 1-7" })!,
       ],
       partnerDrill: [getPartnerDrillItemById("promise-kumite-5")!, 
         getPartnerDrillItemById("promise-kumite-6")!
@@ -467,10 +457,7 @@ const rankSpecs: RankSpec[] = [
     requirements: {
       kata: [getKataItemById("naihanchi-sandan")!],
       weaponKata: [
-        getWeaponKataItemById("tonfa-kihon-8")!,
-        getWeaponKataItemById("tonfa-kihon-9")!,
-        getWeaponKataItemById("tonfa-kihon-10")!,
-        getWeaponKataItemById("tonfa-kihon-11")!,
+        getWeaponKataItemById("tonfa-kihon", { name: "Tonfa Kihon 8-11" })!,
       ],
       partnerDrill: [getPartnerDrillItemById("promise-kumite-7")!],
       selfDefense: [],
@@ -505,18 +492,7 @@ const rankSpecs: RankSpec[] = [
     requirements: {
       kata: [getKataItemById("fukyugata-sandan")!],
       weaponKata: [
-        getWeaponKataItemById("sai-kihon-1")!,
-        getWeaponKataItemById("sai-kihon-2")!,
-        getWeaponKataItemById("sai-kihon-3")!,
-        getWeaponKataItemById("sai-kihon-4")!,
-        getWeaponKataItemById("sai-kihon-5")!,
-        getWeaponKataItemById("sai-kihon-6")!,
-        getWeaponKataItemById("sai-kihon-7")!,
-        getWeaponKataItemById("sai-kihon-8")!,
-        getWeaponKataItemById("sai-kihon-9")!,
-        getWeaponKataItemById("sai-kihon-10")!,
-        getWeaponKataItemById("sai-kihon-11")!,
-        getWeaponKataItemById("sai-kihon-12")!,
+        getWeaponKataItemById("sai-kihon")!,
       ],
       partnerDrill: [],
       selfDefense: [],

@@ -1,48 +1,8 @@
-import React from "react";
-import { ScrollView, StyleSheet, Text, View } from "react-native";
-import CatalogRow from "../src/components/CatalogRow";
+import CatalogList from "../src/components/CatalogList";
 import { weaponKataCatalog } from "../src/data/weapon-kata";
 
-export default function WeaponKataScreen() {
-  return React.createElement(
-    ScrollView,
-    { contentContainerStyle: styles.container },
-    React.createElement(
-      View,
-      { style: styles.list },
-      ...weaponKataCatalog
-        .filter((item) => item.id !== "none" && (item.name || "").toLowerCase() !== "none" && !item.isPartial)
-        .map((item) => {
-          return React.createElement(CatalogRow, {
-            key: item.id,
-            item,
-            category: "weaponKata",
-          });
-        })
-    )
-  );
-}
+const topLevelItems = weaponKataCatalog.filter((item) => !item.groupId);
 
-const styles = StyleSheet.create({
-  container: {
-    flexGrow: 1,
-    padding: 20,
-    paddingBottom: 40,
-    backgroundColor: "#f5f5f5",
-  },
-  title: {
-    fontSize: 30,
-    fontWeight: "700",
-    color: "#111",
-    marginBottom: 8,
-  },
-  subtitle: {
-    fontSize: 15,
-    lineHeight: 22,
-    color: "#666",
-    marginBottom: 24,
-  },
-  list: {
-    gap: 10,
-  },
-});
+export default function WeaponKataScreen() {
+  return <CatalogList items={topLevelItems} category="weaponKata" />;
+}
