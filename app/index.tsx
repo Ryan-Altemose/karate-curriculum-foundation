@@ -7,7 +7,7 @@ export default function HomeScreen() {
     <ScrollView contentContainerStyle={styles.container}>
       <StatusBar style="auto" />
       <View style={styles.header}>
-        <Text style={styles.schoolName} accessibilityRole="header">Empire State Karate</Text>
+        <Text style={styles.schoolName} accessibilityRole="header">ESK KataLog</Text>
         <Text style={styles.subtitle}>Curriculum reference</Text>
         <Text style={styles.description}>Browse kata, weapons, partner drills, and self-defense at every rank.</Text>
       </View>

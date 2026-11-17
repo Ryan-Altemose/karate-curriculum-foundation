@@ -1,18 +1,20 @@
-# ESK Curriculum Reference
+# ESK KataLog
 
 A free, personal-use karate curriculum reference built with Expo, React Native,
 and TypeScript. Browse kata, weapon kata, partner drills, self-defense, and belt
 requirements. All ranks are accessible without accounts or a backend.
 
-## Review checkpoint
+## Current checkpoint
 
-The existing category colors, belt visuals, and navigation are retained. The mock
-student dashboard and rank locks have been removed. Gojushiho is the only entry
-with a demonstration video so far; other entries show a missing-video state.
-Partial exercises remain accessible through the relevant belt requirements.
+- Search by entry name and an optional reverse-rank-order switch.
+- Shared intermediate pages for Sai Kihon, Tonfa Kihon, and Escrima Stick Patterns.
+- ESK KataLog app identity, placeholder icons, web manifest, and Apple home-screen metadata.
+- The temporary Gojushiho recording is no longer referenced by the app or web export.
+  The original file remains locally in `assets/videos/`.
 
-This checkpoint adds browser support and a production web export. PWA installation,
-offline caching, hosting, additional videos, and provider embeds are deferred.
+The preview remains local at the owner's request. No Cloudflare project has been
+created or deployed. Offline caching, real demonstration videos, and provider
+embeds are deferred. The current web app requires a network connection.
 
 ## Run locally
 
@@ -24,10 +26,9 @@ npm install
 npm run web
 ```
 
-Expo also supports the existing mobile workflow with `npm start`, `npm run ios`,
-and `npm run android`. Video playback now uses `expo-video`; existing custom
-native builds need rebuilding to include it. Native device playback has not yet
-been verified for this checkpoint.
+Expo also supports the mobile workflow with `npm start`, `npm run ios`, and
+`npm run android`. Video playback uses `expo-video`; custom native builds need
+rebuilding when native dependencies change. Expo Go is a development preview.
 
 ## Review the production preview
 
@@ -36,19 +37,49 @@ npm run build:web
 npm run preview:web
 ```
 
-Open <http://127.0.0.1:8083> on this computer. The preview server supports refreshing
-detail URLs directly. Its loopback address is not accessible from a phone.
-The web export is written to ignored `dist-web/`, separate from the existing native
-`dist/` export.
+Open <http://127.0.0.1:8083> on this computer. The preview supports refreshing detail
+URLs directly. Its loopback address is not accessible from a phone. The web export
+is written to ignored `dist-web/`, separate from the native `dist/` export.
 
-Suggested review:
+Review the home screen, all category lists, search, reverse sorting, belt
+requirements, and grouped weapon navigation. Gojushiho should now display
+"No video available." Refresh a detail URL and check browser Back navigation.
 
-- Check the simplified home screen and familiar category buttons.
-- Open Curriculum, expand Black Belts, and open Kudan.
-- Open Kata and select Kusanku; it should be accessible without a video.
-- Open Gojushiho and check play/pause, seeking, audio, and fullscreen.
-- Browse the other three categories and resize the window to phone width.
-- Refresh a detail URL and use the browser's Back button.
+## Home-screen installation
+
+The manifest at `public/manifest.webmanifest` defines the name, standalone display,
+and 192/512 pixel icons. `public/index.html` contains Apple home-screen metadata
+and a 180 pixel Apple touch icon reference. The native icon is 1024 pixels.
+These placeholder assets are resized copies of `assets/images/Shorin-patch.png`;
+the artwork is unchanged.
+
+Once an HTTPS preview is approved and hosted, test adding it to the home screen
+from Safari on iPhone and the install/add-to-home-screen menu in Chrome on Android.
+Check the displayed name and icon, standalone launch, safe areas, navigation,
+and reopening after a site update. Physical-device installation is not verified
+by the browser tests or Expo Go. No service worker or offline cache is installed
+at this checkpoint.
+
+## Future Cloudflare Pages deployment
+
+Deployment is not authorized yet. A Cloudflare account email alone does not
+connect the project or grant access to the account. When publishing is approved:
+
+1. Run `npm run build:web` and the checks below.
+2. Deploy only `dist-web/`, not the repository, `assets/`, or the native `dist/`.
+3. Use the generated HTTPS URL for phone installation tests.
+4. Verify direct links such as `/weapon-kata/tonfa-kihon` and page refreshes.
+
+For Git integration, the build command is `npm run build:web`, output directory
+`dist-web`, and Node version 24 LTS. Direct Upload can instead upload the prebuilt
+folder from the Cloudflare dashboard. Cloudflare requires a separate project to
+switch from Direct Upload to Git integration later; choose that workflow before
+creating a project. The export intentionally has no `404.html`, allowing Pages'
+default single-page-app fallback. `public/_headers` makes the manifest revalidate.
+
+A Pages asset must be at most 25 MiB. Aim for under 20 MB per future video and
+inspect actual sizes before deploying. Keep original recordings backed up
+separately; publish optimized browser-compatible MP4 copies.
 
 ## Verification
 
@@ -57,23 +88,20 @@ npm run typecheck
 npm test
 ```
 
-Playwright runs against the production export at desktop and phone dimensions.
-It uses installed Microsoft Edge. Tests cover the reference home screen,
-unrestricted navigation across categories and advanced belts, detail URL refresh,
-and actual video loading, playback, and seeking. If no preview is running, the
-test runner builds and starts one automatically. Stop/rebuild an existing preview
-after changing source files so tests use the latest export.
+Playwright uses installed Microsoft Edge at desktop and phone dimensions. It
+checks curriculum navigation, search/sorting, weapon groups, installation metadata,
+icon dimensions, and the missing-video state. If no preview is running, it builds
+and starts one automatically. Stop/rebuild an existing preview after source
+changes so tests use the latest export.
 
 Phone-sized browser tests do not replace Safari/iOS or Android device checks.
 
 ## Curriculum and video data
 
-Curriculum is maintained in `src/data/`. Belt organization is independent of
-access; existing `minimumRankOrder` metadata does not restrict any screen.
-Keep descriptions in `notes`. Use `videoUrl` for a direct browser-compatible media
-URL, or `videoAsset` for the bundled kata demonstration. Provider watch-page URLs
-such as YouTube require a future embed/external-link implementation.
-
-Videos are outside the Expo Router `app/` directory. The existing Gojushiho MP4
-is approximately 65 MiB and has not been compressed. Its size and hosting location
-must be addressed before deploying to a host with smaller per-file limits.
+Curriculum is maintained in `src/data/`. Existing `minimumRankOrder` metadata does
+not restrict access. Weapon `groupId` references define intermediate pages;
+rank requirements can supply a display name while retaining the same destination.
+Keep descriptions in `notes`. Use `videoUrl` for direct media URLs or `videoAsset`
+for a bundled kata asset. Provider watch-page URLs need a future embed/external-link
+implementation. Adding the PWA to a home screen does not download a video library;
+offline downloads would be a separate feature.

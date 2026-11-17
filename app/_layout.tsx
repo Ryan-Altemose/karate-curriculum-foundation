@@ -11,7 +11,7 @@ export default function RootLayout() {
         headerTransparent: false,
       }}
     >
-      <Stack.Screen name="index" options={{ title: "Curriculum Reference", headerShown: false }} />
+      <Stack.Screen name="index" options={{ title: "ESK KataLog", headerShown: false }} />
       <Stack.Screen name="curriculum" options={{ title: "Curriculum" }} />
       <Stack.Screen name="kata" options={{ title: "Kata" }} />
       <Stack.Screen name="partner-drill" options={{ title: "Partner Drills" }} />

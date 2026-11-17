@@ -33,16 +33,3 @@ for (const [route, name, itemId] of [
     await expect(page.getByText("No video available", { exact: true })).toBeVisible();
   });
 }
-
-test("Gojushiho loads and plays its demonstration", async ({ page }) => {
-  await page.goto("/kata/gojushiho", { waitUntil: "domcontentloaded" });
-  const video = page.locator("video");
-  await expect(video).toHaveCount(1);
-  await expect(video).toHaveJSProperty("controls", true);
-  await expect(video).toHaveJSProperty("playsInline", true);
-  await expect.poll(() => video.evaluate((element: HTMLVideoElement) => element.readyState)).toBeGreaterThanOrEqual(1);
-  await video.evaluate((element: HTMLVideoElement) => element.play());
-  await expect.poll(() => video.evaluate((element: HTMLVideoElement) => element.currentTime)).toBeGreaterThan(0);
-  await video.evaluate((element: HTMLVideoElement) => { element.pause(); element.currentTime = 5; });
-  await expect.poll(() => video.evaluate((element: HTMLVideoElement) => element.currentTime)).toBeCloseTo(5, 0);
-});

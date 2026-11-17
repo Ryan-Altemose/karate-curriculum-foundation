@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "Karate Curriculum",
+    "name": "ESK KataLog",
     "slug": "karate-curriculum",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -16,7 +16,8 @@
     "android": {},
     "web": {
       "bundler": "metro",
-      "output": "single"
+      "output": "single",
+      "favicon": "./public/icons/icon-192.png"
     },
     "plugins": [
       "expo-router",
@@ -29,6 +30,7 @@
       "eas": {
         "projectId": "c7060acb-04b8-4037-b344-2dc9ff48c7fb"
       }
-    }
+    },
+    "icon": "./assets/images/app-icon.png"
   }
 }
