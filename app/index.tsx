@@ -12,7 +12,7 @@ export default function HomeScreen() {
           <Image source={require("../assets/images/Shorin-patch.png")} style={styles.logo} accessibilityLabel="Shorin-Ryu patch" />
           <View style={styles.brand}>
             <Text style={styles.eyebrow}>EMPIRE STATE KARATE</Text>
-            <Text style={styles.schoolName} accessibilityRole="header">ESK KataLog</Text>
+            <Text style={styles.schoolName} accessibilityRole="header">ESK Katalog</Text>
             <Text style={styles.subtitle}>Curriculum reference</Text>
           </View>
         </View>

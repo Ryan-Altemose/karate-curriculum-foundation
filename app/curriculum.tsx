@@ -57,13 +57,9 @@ export default function CurriculumScreen() {
           tigerRanks.map(renderRankRow)
         ),
 
-        React.createElement(View, { style: styles.fullDivider }),
-
         React.createElement(CollapsibleSection, { title: "UNDERBELTS", initiallyOpen: false },
           underbelts.map(renderRankRow)
         ),
-
-        React.createElement(View, { style: styles.fullDivider }),
 
         React.createElement(CollapsibleSection, { title: "BLACK BELTS", initiallyOpen: false },
           blackBelts.map(renderRankRow)
@@ -96,7 +92,6 @@ const styles = StyleSheet.create({
   list: {
     gap: 10,
   },
-  fullDivider: { height: 0 },
   rankRow: {
     minHeight: 76,
     paddingHorizontal: 18,
