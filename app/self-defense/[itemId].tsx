@@ -35,7 +35,7 @@ export default function SelfDefenseItemPage() {
 const styles = StyleSheet.create({
   container: {
     padding: 20,
-    backgroundColor: colors.background,
+    backgroundColor: "transparent",
     paddingBottom: 60,
   },
   center: { flex: 1, justifyContent: "center", alignItems: "center", padding: 20 },

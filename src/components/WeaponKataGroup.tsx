@@ -16,6 +16,6 @@ export default function WeaponKataGroup({ groupId }: { groupId: WeaponKataGroupI
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, padding: 20, paddingBottom: 40, backgroundColor: colors.background, gap: 10 },
+  container: { flexGrow: 1, padding: 20, paddingBottom: 40, backgroundColor: "transparent", gap: 10 },
   title: { ...ui.title, color: colors.ink, marginBottom: 6 },
 });

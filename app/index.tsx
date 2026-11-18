@@ -16,7 +16,7 @@ export default function HomeScreen() {
             <Text style={styles.subtitle}>Curriculum reference</Text>
           </View>
         </View>
-        <Text style={styles.description}>Your curriculum, at a glance.</Text>
+        <Text style={styles.description}>Our curriculum, at a glance.</Text>
         <View style={styles.buttonStack}>
           <Pressable accessibilityRole="button"
             style={({ pressed }) => [styles.curriculumButton, pressed && styles.buttonPressed]}
@@ -68,7 +68,7 @@ export default function HomeScreen() {
 }
 
 const styles = StyleSheet.create({
-  screen: { flex: 1, backgroundColor: colors.background },
+  screen: { flex: 1, backgroundColor: "transparent" },
   container: { flexGrow: 1, padding: 22, paddingBottom: 36, maxWidth: 600 },
   header: { flexDirection: "row", alignItems: "center", gap: 14, marginTop: 24 },
   logo: { width: 58, height: 62, resizeMode: "contain" },

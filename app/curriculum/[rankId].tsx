@@ -47,7 +47,7 @@ export default function RankRequirementsScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, padding: 20, paddingBottom: 40, backgroundColor: colors.background },
+  container: { flexGrow: 1, padding: 20, paddingBottom: 40, backgroundColor: "transparent" },
   title: { ...ui.title, color: colors.ink, marginBottom: 8 },
   subtitle: { fontSize: 15, color: colors.muted, marginBottom: 24 },
   list: { gap: 10 },
@@ -64,7 +64,7 @@ const styles = StyleSheet.create({
   requirementItem: { marginTop: 8, fontSize: 15, lineHeight: 21, color: colors.ink },
   emptyRequirement: { marginTop: 8, fontSize: 14, color: colors.muted, fontStyle: "italic" },
   notes: { marginTop: 10, fontSize: 14, lineHeight: 20, color: colors.muted },
-  emptyState: { flex: 1, padding: 24, justifyContent: "center", alignItems: "center", backgroundColor: colors.background },
+  emptyState: { flex: 1, padding: 24, justifyContent: "center", alignItems: "center", backgroundColor: "transparent" },
   emptyTitle: { fontSize: 22, fontWeight: "700", color: colors.ink },
   emptyText: { marginTop: 8, color: colors.muted, textAlign: "center" },
 });

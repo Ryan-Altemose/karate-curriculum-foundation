@@ -80,7 +80,7 @@ export default function CatalogList({ items, category }: Props) {
 }
 
 const styles = StyleSheet.create({
-  container: { flexGrow: 1, padding: 20, paddingBottom: 40, backgroundColor: colors.background },
+  container: { flexGrow: 1, padding: 20, paddingBottom: 40, backgroundColor: "transparent" },
   searchBar: {
     flexDirection: "row",
     alignItems: "center",

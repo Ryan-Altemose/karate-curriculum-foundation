@@ -77,7 +77,7 @@ const styles = StyleSheet.create({
   container: {
     padding: 20,
     paddingBottom: 40,
-    backgroundColor: colors.background,
+    backgroundColor: "transparent",
     flexGrow: 1,
   },
   title: {
