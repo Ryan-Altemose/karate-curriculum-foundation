@@ -24,6 +24,10 @@ blank screens while fetching individual routes. Videos are still separate assets
 and load when their player is opened. Adding a home-screen icon does not cache
 the curriculum or videos for offline use.
 
+Web navigation uses a short directional slide in `PageTransition.web.tsx`, while
+the wave background stays fixed. Browser reduced-motion preferences disable the
+slide. Native builds retain the navigator's normal platform transitions.
+
 ## Run locally
 
 Use Node.js 24 LTS (24.3 or newer) and npm. Node 25 is outside the supported range
