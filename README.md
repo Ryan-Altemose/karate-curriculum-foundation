@@ -18,6 +18,12 @@ The normal export is suitable for Cloudflare static hosting. Offline caching,
 the rest of the video library, and provider embeds are deferred. The current web
 app requires a network connection.
 
+The web HTML shows a small loading indicator until React renders the app. Screen
+code is bundled together (`expo-router` has web async routes disabled), avoiding
+blank screens while fetching individual routes. Videos are still separate assets
+and load when their player is opened. Adding a home-screen icon does not cache
+the curriculum or videos for offline use.
+
 ## Run locally
 
 Use Node.js 24 LTS (24.3 or newer) and npm. Node 25 is outside the supported range

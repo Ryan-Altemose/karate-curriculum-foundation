@@ -14,12 +14,31 @@
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <style id="expo-reset">
       html, body { height: 100%; }
-      body { overflow: hidden; background: #FAFAFA; }
+      body { margin: 0; overflow: hidden; background: #FAFAFA; }
       #root { display: flex; height: 100%; flex: 1; }
+      #app-loading {
+        flex: 1; display: flex; flex-direction: column; align-items: center;
+        justify-content: center; gap: 12px; color: #686c74;
+        font: 14px system-ui, -apple-system, sans-serif;
+      }
+      .app-loading-spinner {
+        width: 30px; height: 30px; border: 3px solid #e6e4df;
+        border-top-color: #ad2939; border-radius: 50%;
+        animation: app-loading-spin 0.8s linear infinite;
+      }
+      @keyframes app-loading-spin { to { transform: rotate(360deg); } }
+      @media (prefers-reduced-motion: reduce) {
+        .app-loading-spinner { animation: none; }
+      }
     </style>
   </head>
   <body>
     <noscript>Enable JavaScript to browse ESK KataLog.</noscript>
-    <div id="root"></div>
+    <div id="root">
+      <div id="app-loading" role="status" aria-label="Loading app" aria-live="polite">
+        <span class="app-loading-spinner" aria-hidden="true"></span>
+        <span>Loading…</span>
+      </div>
+    </div>
   </body>
 </html>
