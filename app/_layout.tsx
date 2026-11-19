@@ -42,6 +42,10 @@ export default function RootLayout() {
           <Stack.Screen name="weapon-kata/tonfa-kihon" options={{ title: "Tonfa Kihon" }} />
           <Stack.Screen name="weapon-kata/escrima-stick-patterns" options={{ title: "Escrima Stick Patterns" }} />
           <Stack.Screen name="partner-drill/[itemId]" options={{ title: "Partner Drill" }} />
+          <Stack.Screen name="partner-drill/conditioning-drills" options={{ title: "Conditioning Drills" }} />
+          <Stack.Screen name="partner-drill/fighting-attacks" options={{ title: "Fighting Attacks" }} />
+          <Stack.Screen name="partner-drill/uke-waza" options={{ title: "Uke Waza" }} />
+          <Stack.Screen name="partner-drill/promise-kumite" options={{ title: "Promise Kumite" }} />
           <Stack.Screen name="self-defense/[itemId]" options={{ title: "Self-Defense" }} />
         </Stack>
       </ThemeProvider>

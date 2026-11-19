@@ -28,6 +28,9 @@ for (const [route, name, itemId] of [
 ]) {
   test(`${route} items open without rank restrictions`, async ({ page }) => {
     await page.goto(`/${route}`, { waitUntil: "domcontentloaded" });
+    if (route === "partner-drill") {
+      await page.getByRole("button", { name: "Uke Waza", exact: true }).click();
+    }
     await page.getByRole("button", { name, exact: true }).click();
     await expect(page).toHaveURL(new RegExp(`/${route}/${itemId}$`));
     await expect(page.getByText("No video available", { exact: true })).toBeVisible();

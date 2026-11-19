@@ -1,6 +1,6 @@
 import { expect, test } from "@playwright/test";
 
-for (const route of ["kata", "weapon-kata", "partner-drill", "self-defense"]) {
+for (const route of ["kata", "weapon-kata", "self-defense"]) {
   test(`${route} searches names and reverses the existing rank sequence`, async ({ page }) => {
     await page.goto(`/${route}`, { waitUntil: "domcontentloaded" });
     const search = page.getByRole("searchbox", { name: "Search entries" });

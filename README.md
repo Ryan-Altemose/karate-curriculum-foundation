@@ -8,6 +8,7 @@ requirements. All ranks are accessible without accounts or a backend.
 
 - Search by entry name and an optional reverse-rank-order switch.
 - Shared intermediate pages for Sai Kihon, Tonfa Kihon, and Escrima Stick Patterns.
+- Partner-drill groups for Conditioning Drills, Fighting Attacks, Uke Waza, and Promise Kumite.
 - ESK KataLog app identity, placeholder icons, web manifest, and Apple home-screen metadata.
 - The compressed Gojushiho recording is included in production, using the shared
   video registry in `src/data/videos.ts`. The larger original is not referenced
@@ -122,8 +123,10 @@ changes to the video/description layout should be made there.
 
 Curriculum is maintained in `src/data/`. Catalog sequence determines browsing order;
 rank requirements are defined separately in `src/data/curriculum.ts`.
-Weapon `groupId` references define intermediate pages;
+Weapon and partner-drill `groupId` references define intermediate pages;
 rank requirements can supply a display name while retaining the same destination.
+To add another conditioning drill, add its entry to `src/data/partner-drill.ts`
+with `groupId: "conditioning-drills"`. It will appear on that group's page.
 Keep descriptions in `notes`. Assign videos in `src/data/videos.ts` for all four
 categories; follow [docs/videos.md](docs/videos.md) when adding recordings.
 Provider watch-page URLs need a future embed/external-link implementation.

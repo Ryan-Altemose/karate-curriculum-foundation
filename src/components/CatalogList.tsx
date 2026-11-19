@@ -14,12 +14,13 @@ type CatalogEntry = {
 type Props = {
   items: readonly CatalogEntry[];
   category: RequirementCategory;
+  showControls?: boolean;
 };
 
-export default function CatalogList({ items, category }: Props) {
+export default function CatalogList({ items, category, showControls = true }: Props) {
   const [query, setQuery] = useState("");
   const [reverseRankOrder, setReverseRankOrder] = useState(false);
-  const search = query.trim().toLowerCase();
+  const search = showControls ? query.trim().toLowerCase() : "";
   const visibleItems = items.filter((item) =>
     !item.isPartial &&
     item.id !== "none" &&
@@ -29,45 +30,49 @@ export default function CatalogList({ items, category }: Props) {
 
   // The catalogs define the curriculum sequence. Reverse a filtered copy so
   // browsing never mutates the shared data used by the belt requirements.
-  if (reverseRankOrder) visibleItems.reverse();
+  if (showControls && reverseRankOrder) visibleItems.reverse();
 
   return (
     <ScrollView contentContainerStyle={[ui.screen, styles.container]} keyboardShouldPersistTaps="handled">
-      <View style={styles.searchBar}>
-        <Ionicons name="search-outline" size={22} color={colors.muted} />
-        <TextInput
-          accessibilityLabel="Search entries"
-          placeholder="Search"
-          placeholderTextColor={colors.muted}
-          inputMode="search"
-          returnKeyType="search"
-          autoCapitalize="none"
-          autoCorrect={false}
-          value={query}
-          onChangeText={setQuery}
-          style={styles.searchInput}
-        />
-        {query.length > 0 && (
-          <Pressable
-            accessibilityRole="button"
-            accessibilityLabel="Clear search"
-            onPress={() => setQuery("")}
-            style={styles.clearButton}
-          >
-            <Ionicons name="close-circle" size={22} color="#666" />
-          </Pressable>
-        )}
-      </View>
+      {showControls && (
+        <>
+          <View style={styles.searchBar}>
+            <Ionicons name="search-outline" size={22} color={colors.muted} />
+            <TextInput
+              accessibilityLabel="Search entries"
+              placeholder="Search"
+              placeholderTextColor={colors.muted}
+              inputMode="search"
+              returnKeyType="search"
+              autoCapitalize="none"
+              autoCorrect={false}
+              value={query}
+              onChangeText={setQuery}
+              style={styles.searchInput}
+            />
+            {query.length > 0 && (
+              <Pressable
+                accessibilityRole="button"
+                accessibilityLabel="Clear search"
+                onPress={() => setQuery("")}
+                style={styles.clearButton}
+              >
+                <Ionicons name="close-circle" size={22} color="#666" />
+              </Pressable>
+            )}
+          </View>
 
-      <View style={styles.sortRow}>
-        <Text style={styles.sortLabel}>Reverse-rank order</Text>
-        <Switch
-          accessibilityLabel="Reverse-rank order"
-          value={reverseRankOrder}
-          onValueChange={setReverseRankOrder}
-          trackColor={{ false: "#ccc", true: "#0ea713" }}
-        />
-      </View>
+          <View style={styles.sortRow}>
+            <Text style={styles.sortLabel}>Reverse-rank order</Text>
+            <Switch
+              accessibilityLabel="Reverse-rank order"
+              value={reverseRankOrder}
+              onValueChange={setReverseRankOrder}
+              trackColor={{ false: "#ccc", true: "#0ea713" }}
+            />
+          </View>
+        </>
+      )}
 
       <View testID="catalog-entries" style={styles.list}>
         {visibleItems.map((item) => <CatalogRow key={item.id} item={item} category={category} />)}
