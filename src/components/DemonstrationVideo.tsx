@@ -11,7 +11,7 @@ type Props = {
 export default function DemonstrationVideo({ source }: Props) {
   if (source === undefined) {
     return (
-      <View style={styles.placeholder}>
+      <View style={[styles.frame, styles.placeholder]}>
         <View style={styles.playBadge}><Ionicons name="play-outline" size={28} color={colors.muted} /></View>
         <Text style={styles.message}>No video available</Text>
       </View>
@@ -29,7 +29,7 @@ function Player({ source }: { source: number | string }) {
     <View style={styles.container}>
       <VideoView
         player={player}
-        style={styles.video}
+        style={[styles.frame, styles.video]}
         nativeControls
         playsInline
         contentFit="contain"
@@ -46,13 +46,12 @@ function Player({ source }: { source: number | string }) {
 
 const styles = StyleSheet.create({
   container: { marginBottom: 18 },
-  video: { width: "100%", aspectRatio: 16 / 9, backgroundColor: "#000", borderRadius: 12 },
+  frame: { width: "100%", aspectRatio: 16 / 9, borderRadius: 20 },
+  video: { backgroundColor: "#000" },
   placeholder: {
-    height: 200,
     backgroundColor: colors.inset,
     borderWidth: 1,
     borderColor: colors.border,
-    borderRadius: 20,
     justifyContent: "center",
     alignItems: "center",
     marginBottom: 18,

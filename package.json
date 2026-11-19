@@ -10,7 +10,7 @@
     "web": "expo start --web",
     "typecheck": "tsc --noEmit",
     "test": "playwright test",
-    "build:web": "expo export --platform web --output-dir dist-web",
+    "build:web": "expo export --platform web --output-dir dist-web && node scripts/check-web-assets.mjs",
     "preview:web": "serve dist-web --single --listen tcp://127.0.0.1:8083 --no-clipboard"
   },
   "dependencies": {

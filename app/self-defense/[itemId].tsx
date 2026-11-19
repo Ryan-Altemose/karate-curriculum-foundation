@@ -3,6 +3,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import DemonstrationVideo from "../../src/components/DemonstrationVideo";
+import { getVideoSource } from "../../src/data/videos";
 import { getSelfDefenseById } from "../../src/data/self-defense";
 
 export default function SelfDefenseItemPage() {
@@ -22,7 +23,7 @@ export default function SelfDefenseItemPage() {
     <ScrollView contentContainerStyle={[ui.screen, styles.container]}>
       <Text style={styles.title}>{item.name}</Text>
 
-      <DemonstrationVideo source={item.videoUrl} />
+      <DemonstrationVideo source={getVideoSource("selfDefense", item.id)} />
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Description</Text>

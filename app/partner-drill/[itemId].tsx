@@ -3,6 +3,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import DemonstrationVideo from "../../src/components/DemonstrationVideo";
+import { getVideoSource } from "../../src/data/videos";
 import { getPartnerDrillById } from "../../src/data/partner-drill";
 
 export default function PartnerDrillItemPage() {
@@ -22,7 +23,7 @@ export default function PartnerDrillItemPage() {
     <ScrollView contentContainerStyle={[ui.screen, styles.container]}>
       <Text style={styles.title}>{item.name}</Text>
 
-      <DemonstrationVideo source={item.videoUrl} />
+      <DemonstrationVideo source={getVideoSource("partnerDrill", item.id)} />
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Description</Text>

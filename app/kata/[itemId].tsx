@@ -3,6 +3,7 @@ import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useLocalSearchParams } from "expo-router";
 import DemonstrationVideo from "../../src/components/DemonstrationVideo";
+import { getVideoSource } from "../../src/data/videos";
 import { getKataById } from "../../src/data/kata";
 
 export default function KataItemPage() {
@@ -22,7 +23,7 @@ export default function KataItemPage() {
     <ScrollView contentContainerStyle={[ui.screen, styles.container]}>
       <Text style={styles.title}>{kata.name}</Text>
 
-      <DemonstrationVideo source={kata.videoAsset ?? kata.videoUrl} />
+      <DemonstrationVideo source={getVideoSource("kata", kata.id)} />
 
       <View style={styles.section}>
         <Text style={styles.sectionTitle}>Description</Text>

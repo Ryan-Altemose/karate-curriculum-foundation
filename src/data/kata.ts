@@ -5,8 +5,6 @@ export type Kata = {
   notes?: string;
   minimumRankOrder?: number;
   isPartial?: boolean;
-  videoAsset?: number;
-  videoUrl?: string;
 };
 
 export const kataCatalog: Kata[] = [

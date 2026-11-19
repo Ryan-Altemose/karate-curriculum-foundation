@@ -3,7 +3,7 @@ import { expect, test } from "@playwright/test";
 test("ESK KataLog exposes its installation manifest and icons", async ({ page, request }) => {
   await page.goto("/", { waitUntil: "domcontentloaded" });
   await expect(page).toHaveTitle("ESK KataLog");
-  await expect(page.getByRole("heading", { name: "ESK KataLog", exact: true })).toBeVisible();
+  await expect(page.getByRole("heading", { name: /^ESK KataLog$/i })).toBeVisible();
   const manifestLink = page.locator('link[rel="manifest"]');
   await expect(manifestLink).toHaveAttribute("href", "/manifest.webmanifest");
   const response = await request.get("/manifest.webmanifest");
@@ -21,10 +21,4 @@ test("ESK KataLog exposes its installation manifest and icons", async ({ page, r
   }
   await expect(page.locator('meta[name="apple-mobile-web-app-capable"]')).toHaveAttribute("content", "yes");
   await expect(page.locator('link[rel="apple-touch-icon"]')).toHaveAttribute("href", "/icons/apple-touch-icon.png");
-});
-
-test("temporary Gojushiho recording is absent from the preview", async ({ page }) => {
-  await page.goto("/kata/gojushiho", { waitUntil: "domcontentloaded" });
-  await expect(page.getByText("No video available", { exact: true })).toBeVisible();
-  await expect(page.locator("video")).toHaveCount(0);
 });

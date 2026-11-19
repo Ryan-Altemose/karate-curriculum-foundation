@@ -2,5 +2,7 @@ node_modules
 .expo/
 
 dist-web/
+dist-video-demo/
 test-results/
+video-test-results/
 playwright-report/

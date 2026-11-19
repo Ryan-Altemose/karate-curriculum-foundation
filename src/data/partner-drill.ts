@@ -3,7 +3,6 @@ export type PartnerDrill = {
   name: string;
   order: number;
   notes?: string;
-  videoUrl?: string;
   minimumRankOrder?: number;
   isPartial?: boolean;
 };

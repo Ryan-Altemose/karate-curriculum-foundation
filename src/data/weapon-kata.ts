@@ -5,7 +5,6 @@ export type WeaponKata = {
   name: string;
   order: number;
   notes?: string;
-  videoUrl?: string;
   minimumRankOrder?: number;
   isPartial?: boolean;
   groupId?: WeaponKataGroupId;

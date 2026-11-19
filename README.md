@@ -9,12 +9,13 @@ requirements. All ranks are accessible without accounts or a backend.
 - Search by entry name and an optional reverse-rank-order switch.
 - Shared intermediate pages for Sai Kihon, Tonfa Kihon, and Escrima Stick Patterns.
 - ESK KataLog app identity, placeholder icons, web manifest, and Apple home-screen metadata.
-- The temporary Gojushiho recording is no longer referenced by the app or web export.
-  The original file remains locally in `assets/videos/`.
+- The compressed Gojushiho recording is included in production, using the shared
+  video registry in `src/data/videos.ts`. The larger original is not referenced
+  and is excluded from the web export.
 
-The preview remains local at the owner's request. No Cloudflare project has been
-created or deployed. Offline caching, real demonstration videos, and provider
-embeds are deferred. The current web app requires a network connection.
+The normal export is suitable for Cloudflare static hosting. Offline caching,
+the rest of the video library, and provider embeds are deferred. The current web
+app requires a network connection.
 
 ## Run locally
 
@@ -42,8 +43,9 @@ URLs directly. Its loopback address is not accessible from a phone. The web expo
 is written to ignored `dist-web/`, separate from the native `dist/` export.
 
 Review the home screen, all category lists, search, reverse sorting, belt
-requirements, and grouped weapon navigation. Gojushiho should now display
-"No video available." Refresh a detail URL and check browser Back navigation.
+requirements, and grouped weapon navigation. Gojushiho should play the compressed
+recording; entries without a recording show "No video available." Refresh a detail
+URL and check browser Back navigation.
 
 ## Home-screen installation
 
@@ -60,10 +62,17 @@ and reopening after a site update. Physical-device installation is not verified
 by the browser tests or Expo Go. No service worker or offline cache is installed
 at this checkpoint.
 
-## Future Cloudflare Pages deployment
+## Cloudflare deployment
 
-Deployment is not authorized yet. A Cloudflare account email alone does not
-connect the project or grant access to the account. When publishing is approved:
+The current app is hosted at <https://esk-katalog.ryanaltemoose.workers.dev> using
+Workers static assets. Keep the existing GitHub-connected deployment configured
+to build with `npm run build:web` and publish `dist-web`. Commit and push both new
+video files and their registry assignments when adding recordings. If the existing
+deploy command uses Wrangler, keep its assets directory pointed at `dist-web`.
+
+The following output-directory guidance also applies to Cloudflare Pages:
+
+For a normal deployment or update:
 
 1. Run `npm run build:web` and the checks below.
 2. Deploy only `dist-web/`, not the repository, `assets/`, or the native `dist/`.
@@ -77,11 +86,19 @@ switch from Direct Upload to Git integration later; choose that workflow before
 creating a project. The export intentionally has no `404.html`, allowing Pages'
 default single-page-app fallback. `public/_headers` makes the manifest revalidate.
 
-A Pages asset must be at most 25 MiB. Aim for under 20 MB per future video and
-inspect actual sizes before deploying. Keep original recordings backed up
-separately; publish optimized browser-compatible MP4 copies.
+A Cloudflare static asset must be at most 25 MiB (26,214,400 bytes). A 20 MB target
+is optional headroom, not a separate limit. The compressed Gojushiho file is
+21,111,388 bytes (20.13 MiB) after lossless fast-start optimization and fits. Keep original recordings backed up separately;
+publish optimized browser-compatible MP4 copies. See [the video workflow](docs/videos.md).
 
 ## Verification
+
+Use the normal production preview above and open `/kata/gojushiho` to test the
+same compressed recording that will be deployed. A separate demo build or
+environment variable is no longer needed. The original recording is unchanged.
+
+`npm run build:web` also checks exported asset sizes and fails if any file exceeds
+Cloudflare's 25 MiB limit.
 
 ```sh
 npm run typecheck
@@ -90,7 +107,8 @@ npm test
 
 Playwright uses installed Microsoft Edge at desktop and phone dimensions. It
 checks curriculum navigation, search/sorting, weapon groups, installation metadata,
-icon dimensions, and the missing-video state. If no preview is running, it builds
+icon dimensions, real video playback/pause/seeking, the shared video frame, and
+the missing-video state. If no preview is running, it builds
 and starts one automatically. Stop/rebuild an existing preview after source
 changes so tests use the latest export.
 
@@ -101,7 +119,8 @@ Phone-sized browser tests do not replace Safari/iOS or Android device checks.
 Curriculum is maintained in `src/data/`. Existing `minimumRankOrder` metadata does
 not restrict access. Weapon `groupId` references define intermediate pages;
 rank requirements can supply a display name while retaining the same destination.
-Keep descriptions in `notes`. Use `videoUrl` for direct media URLs or `videoAsset`
-for a bundled kata asset. Provider watch-page URLs need a future embed/external-link
-implementation. Adding the PWA to a home screen does not download a video library;
-offline downloads would be a separate feature.
+Keep descriptions in `notes`. Assign videos in `src/data/videos.ts` for all four
+categories; follow [docs/videos.md](docs/videos.md) when adding recordings.
+Provider watch-page URLs need a future embed/external-link implementation.
+Adding the PWA to a home screen does not download a video library; offline
+downloads would be a separate feature.
