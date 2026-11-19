@@ -4,6 +4,8 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { categoryColors, colors, ui } from "../src/theme";
 
+const BELT_GOLD = "#c9a34d";
+
 export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.screen} edges={["top", "left", "right"]}>
@@ -18,22 +20,17 @@ export default function HomeScreen() {
         </View>
         <Text style={styles.description}>Our curriculum, at a glance.</Text>
         <View style={styles.buttonStack}>
-          <Pressable accessibilityRole="button"
-            style={({ pressed }) => [styles.curriculumButton, pressed && styles.buttonPressed]}
+          <Pressable accessibilityRole="button" accessibilityLabel="View All Belts"
+            style={({ pressed }) => [ui.card, styles.curriculumButton, pressed && styles.buttonPressed]}
             onPress={() => router.push("/curriculum")}
           >
             <View style={styles.curriculumButtonInner}>
-              <View style={[styles.curriculumStripe, styles.whiteStripe]} />
-              <View style={[styles.curriculumStripe, styles.yellowStripe]} />
-              <View style={[styles.curriculumStripe, styles.orangeStripe]} />
-              <View style={[styles.curriculumStripe, styles.blueStripe]} />
-              <View style={[styles.curriculumStripe, styles.greenStripe]} />
-              <View style={[styles.curriculumStripe, styles.purpleStripe]} />
-              <View style={[styles.curriculumStripe, styles.brownStripe]} />
-              <View style={[styles.curriculumStripe, styles.redStripe]} />
-              <View style={[styles.curriculumStripe, styles.blackStripe]} />
-              <View style={styles.curriculumButtonLabelWrap}>
-                <View style={styles.beltLabel}><Text style={styles.buttonText}>View All Belts</Text><Ionicons name="chevron-forward" size={18} color="#fff" /></View>
+              <View style={styles.curriculumLabel}>
+                <Ionicons name="book" size={24} color={BELT_GOLD} accessible={false} />
+                <Text style={styles.buttonText}>View All Belts</Text>
+              </View>
+              <View style={styles.curriculumChevron}>
+                <Ionicons name="chevron-forward" size={20} color={colors.surface} />
               </View>
             </View>
           </Pressable>
@@ -84,42 +81,25 @@ const styles = StyleSheet.create({
     opacity: 0.75,
   },
   curriculumButton: {
-    borderRadius: 18,
-    alignItems: "center",
+    minHeight: 104,
+    backgroundColor: colors.ink,
+    borderColor: colors.ink,
+    borderLeftWidth: 6,
+    borderLeftColor: BELT_GOLD,
     overflow: "hidden",
   },
   curriculumButtonInner: {
     flexDirection: "row",
-    alignItems: "stretch",
-    width: "100%",
-    minHeight: 104,
-    position: "relative",
-  },
-  curriculumStripe: {
     flex: 1,
-    minHeight: 104,
-  },
-  whiteStripe: { backgroundColor: "#f5f5f5" },
-  yellowStripe: { backgroundColor: "#facc15" },
-  orangeStripe: { backgroundColor: "#f97316" },
-  blueStripe: { backgroundColor: "#2563eb" },
-  greenStripe: { backgroundColor: "#22c55e" },
-  purpleStripe: { backgroundColor: "#a855f7" },
-  brownStripe: { backgroundColor: "#8b5a2b" },
-  redStripe: { backgroundColor: "#dc2626" },
-  blackStripe: { backgroundColor: "#111111" },
-  curriculumButtonLabelWrap: {
-    position: "absolute",
-    left: 0,
-    right: 0,
-    top: 0,
-    bottom: 0,
-    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "rgba(17, 17, 17, 0.12)",
-    paddingHorizontal: 16,
+    justifyContent: "space-between",
+    width: "100%",
+    paddingHorizontal: 20,
+    paddingVertical: 18,
+    gap: 12,
   },
-  beltLabel: { flexDirection: "row", alignItems: "center", gap: 10, backgroundColor: "#24272ded", paddingHorizontal: 18, paddingVertical: 12, borderRadius: 24 },
+  curriculumLabel: { flex: 1, flexDirection: "row", alignItems: "center", gap: 10 },
+  curriculumChevron: { width: 32, height: 32, borderRadius: 16, alignItems: "center", justifyContent: "center", backgroundColor: "#ffffff1a" },
   categoryIcon: { width: 46, height: 46, borderRadius: 15, backgroundColor: "#ffffff1a", alignItems: "center", justifyContent: "center" },
   categoryLabel: { flexDirection: "row", alignItems: "flex-end", gap: 6, width: "100%" },
   categoryText: { flex: 1, fontSize: 17, lineHeight: 23, fontWeight: "600", color: "#fff" },
@@ -145,9 +125,12 @@ const styles = StyleSheet.create({
     backgroundColor: categoryColors.selfDefense.accent,
   },
   buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "600",
-    textAlign: "center",
+    color: BELT_GOLD,
+    flexShrink: 1,
+    fontSize: 15,
+    lineHeight: 22,
+    fontWeight: "700",
+    letterSpacing: 1,
+    textTransform: "uppercase",
   },
 });
