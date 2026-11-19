@@ -114,10 +114,15 @@ changes so tests use the latest export.
 
 Phone-sized browser tests do not replace Safari/iOS or Android device checks.
 
+Type checking also rejects unused local variables, imports, and parameters.
+The four curriculum detail routes share `src/components/CatalogDetail.tsx`, so
+changes to the video/description layout should be made there.
+
 ## Curriculum and video data
 
-Curriculum is maintained in `src/data/`. Existing `minimumRankOrder` metadata does
-not restrict access. Weapon `groupId` references define intermediate pages;
+Curriculum is maintained in `src/data/`. Catalog sequence determines browsing order;
+rank requirements are defined separately in `src/data/curriculum.ts`.
+Weapon `groupId` references define intermediate pages;
 rank requirements can supply a display name while retaining the same destination.
 Keep descriptions in `notes`. Assign videos in `src/data/videos.ts` for all four
 categories; follow [docs/videos.md](docs/videos.md) when adding recordings.

@@ -30,11 +30,9 @@ export default function RankRequirementsScreen() {
           <View key={requirement.id} style={styles.requirementCard}>
             <Text style={styles.requirementName}>{requirement.name}</Text>
             {requirement.items.length > 0 ? (
-              requirement.items.map((item) => {
-                return (
-                  <CatalogRow key={item.id} item={item} category={requirement.category} />
-                );
-              })
+              requirement.items.map((item) => (
+                <CatalogRow key={item.id} item={item} category={requirement.category} />
+              ))
             ) : (
               <Text style={styles.emptyRequirement}>Curriculum details will be added soon.</Text>
             )}
@@ -61,7 +59,6 @@ const styles = StyleSheet.create({
     borderColor: "transparent",
   },
   requirementName: { fontSize: 13, fontWeight: "700", letterSpacing: 0.8, textTransform: "uppercase", marginBottom: 4, color: colors.accent },
-  requirementItem: { marginTop: 8, fontSize: 15, lineHeight: 21, color: colors.ink },
   emptyRequirement: { marginTop: 8, fontSize: 14, color: colors.muted, fontStyle: "italic" },
   notes: { marginTop: 10, fontSize: 14, lineHeight: 20, color: colors.muted },
   emptyState: { flex: 1, padding: 24, justifyContent: "center", alignItems: "center", backgroundColor: "transparent" },

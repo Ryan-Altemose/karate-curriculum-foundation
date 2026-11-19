@@ -32,7 +32,7 @@ function buildRequirements(
       const notes = Array.isArray(input) ? undefined : input.notes;
 
       // Ensure any undefined/null items (from missing lookups) are removed
-      const filteredItems = (items as Array<any>).filter(Boolean);
+      const filteredItems = items.filter(Boolean);
 
       return {
         id: `${rankId}-${id}`,
@@ -512,8 +512,4 @@ export const curriculum: Rank[] = [
 
 export function getRankById(rankId: string): Rank | undefined {
   return curriculum.find((rank) => rank.id === rankId);
-}
-
-export function getRankByOrder(rankOrder: number): Rank | undefined {
-  return curriculum.find((rank) => rank.order === rankOrder);
 }

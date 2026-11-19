@@ -29,6 +29,21 @@ determine size. In PowerShell, check exact bytes with:
 (Get-Item 'assets/videos/first_test_gojushiho.mp4').Length
 ```
 
+## HandBrake Settings
+Video Bitrate (kbps) = 150,000 / total_seconds
+
+Once you have your number, apply these settings across the tabs in HandBrake:
+• `Summary Tab`: Set Format to MP4 and check Web Optimized.
+• `Dimensions Tab`: Leave as-is for short clips, or drop Resolution   Limit to 720p HD (or 480p) if the video is longer than 2–3 minutes.
+• `Video Tab`:
+	• Video Encoder: H.264 (x264) (or H.265 (x265) for slightly better quality at very low bitrates).
+	• Framerate (FPS): Set to Same as source (or cap at 30 FPS to save extra data on 60 FPS clips).
+	• Quality: Select Avg Bitrate (kbps) instead of Constant Quality, type in your calculated number, and check 2-Pass Encoding (plus Turbo first pass) so HandBrake distributes the limited data accurately.
+• `Audio Tab`: Set Codec to AAC, Mixdown to Stereo, and Bitrate to 128 (or 96 if you need extra room for video quality).
+
+Click `Start Encode` at the top toolbar once everything is entered.
+
+
 Copy the optimized file into `assets/videos/`. Prefer descriptive lowercase names,
 such as `pinan-shodan.mp4`. Keep large camera originals backed up separately;
 unreferenced originals are not exported by Metro. Do not copy originals into
@@ -82,8 +97,8 @@ automatically alter your recordings. Only referenced assets are bundled; the
 
 Run `npm test` for the browser suite, including actual compressed Gojushiho
 playback at desktop and phone dimensions. Rebuild after changes when an existing
-preview server is running. The video test currently identifies the representative
-file by name; update that assertion if you rename or replace this specific file.
+preview server is running. The playback check uses the Gojushiho entry, so its
+recording can be renamed or replaced without changing the test.
 
 ## 4. Publish and check your phone
 

@@ -5,20 +5,11 @@ export type RequirementCategory =
   | "partnerDrill"
   | "selfDefense";
 
-export type CurriculumCategory = {
-  id: RequirementCategory;
-  name: string;
-  order: number;
-  description?: string;
-};
-
 export type CurriculumItem = {
   id: string;
   name: string;
   order: number;
   notes?: string;
-  videoUrl?: string;
-  minimumRankOrder?: number;
 };
 
 export type RankRequirement = {
@@ -28,7 +19,6 @@ export type RankRequirement = {
   order: number;
   items: CurriculumItem[];
   notes?: string;
-  videoUrl?: string;
 };
 
 export type RankType =
@@ -103,15 +93,6 @@ const tigerBeltColors: Record<string, string> = {
   "tiger-red": "#D9342B",
 };
 
-export const requiredClassesByRankType: Record<
-  Exclude<RankType, "tigerBelt">,
-  number
-> = {
-  underBelt: 24,
-  conditionalBlackBelt: 104,
-  fullBlackBelt: 208,
-};
-
 export type Rank = {
   id: string;
   name: string;
@@ -122,13 +103,17 @@ export type Rank = {
   requirements: RankRequirement[];
 };
 
-export function getRequiredClasses(rank: Rank): number | undefined {
-  if (rank.type === "tigerBelt") {
-    return undefined;
-  }
-
-  return requiredClassesByRankType[rank.type];
-}
+export const fullBlackBeltIds: readonly string[] = [
+  "shodan",
+  "nidan",
+  "sandan",
+  "yondan",
+  "godan",
+  "rokudan",
+  "shichidan",
+  "hachidan",
+  "kudan",
+];
 
 function getBlackBeltVisual(stripeColor: string, stripeCount: number): BeltVisual {
   const stripes = Array.from({ length: stripeCount }, (_, index) => [
@@ -174,19 +159,7 @@ export function getBeltVisual(rankId: string, degree?: number): BeltVisual {
   }
 
   // Full black belts use the japanese name as the id (e.g. `shodan`, `nidan`, ...)
-  const fullBlackNames = [
-    "shodan",
-    "nidan",
-    "sandan",
-    "yondan",
-    "godan",
-    "rokudan",
-    "shichidan",
-    "hachidan",
-    "kudan",
-  ];
-
-  if (fullBlackNames.includes(rankId)) {
+  if (fullBlackBeltIds.includes(rankId)) {
     const stripeColor = ["sandan", "yondan", "godan", "rokudan", "shichidan", "hachidan", "kudan"].includes(rankId)
       ? "#F5C542"
       : "#D9342B";

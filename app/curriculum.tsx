@@ -1,5 +1,4 @@
 import { colors, ui } from "../src/theme";
-import React from "react";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
@@ -17,55 +16,48 @@ export default function CurriculumScreen() {
     const hideBeltVisual = rank.id === "no-belt" || rank.id === "tiger-no-belt";
 
     return (
-      React.createElement(
-        Pressable,
-        {
-          key: rank.id,
-          accessibilityRole: "button",
-          accessibilityLabel: rank.name,
-          onPress: () => router.push({ pathname: "/curriculum/[rankId]", params: { rankId: rank.id } }),
-          style: ({ pressed }: { pressed: boolean }) => [
-            ui.card,
-            styles.rankRow,
-            pressed && styles.pressed,
-          ],
-        },
-        React.createElement(
-          View,
-          { style: styles.rankInfo },
-          React.createElement(
-            View,
-            { style: styles.rankText },
-            React.createElement(Text, { style: styles.rankName }, rank.name)
-          ),
-          !hideBeltVisual
-            ? React.createElement(BeltSwatch, { rankId: rank.id, degree: rank.degree, style: styles.beltSwatch })
-            : React.createElement(View, { style: styles.hiddenBeltSwatch })
-        ),
-        React.createElement(Ionicons, { name: "chevron-forward", size: 22, color: colors.muted })
-      )
+      <Pressable
+        key={rank.id}
+        accessibilityRole="button"
+        accessibilityLabel={rank.name}
+        onPress={() => router.push({ pathname: "/curriculum/[rankId]", params: { rankId: rank.id } })}
+        style={({ pressed }) => [
+          ui.card,
+          styles.rankRow,
+          pressed && styles.pressed,
+        ]}
+      >
+        <View style={styles.rankInfo}>
+          <View style={styles.rankText}>
+            <Text style={styles.rankName}>{rank.name}</Text>
+          </View>
+          {hideBeltVisual ? (
+            <View style={styles.hiddenBeltSwatch} />
+          ) : (
+            <BeltSwatch rankId={rank.id} degree={rank.degree} style={styles.beltSwatch} />
+          )}
+        </View>
+        <Ionicons name="chevron-forward" size={22} color={colors.muted} />
+      </Pressable>
     );
   };
 
   return (
-    React.createElement(ScrollView, { contentContainerStyle: [ui.screen, styles.container] },
-      React.createElement(Text, { style: styles.title }, "Curriculum"),
-      React.createElement(Text, { style: styles.subtitle }, "Browse requirements for every belt and rank."),
-
-      React.createElement(View, { style: styles.list },
-        React.createElement(CollapsibleSection, { title: "TIGER BELTS", initiallyOpen: false },
-          tigerRanks.map(renderRankRow)
-        ),
-
-        React.createElement(CollapsibleSection, { title: "UNDERBELTS", initiallyOpen: false },
-          underbelts.map(renderRankRow)
-        ),
-
-        React.createElement(CollapsibleSection, { title: "BLACK BELTS", initiallyOpen: false },
-          blackBelts.map(renderRankRow)
-        )
-      )
-    )
+    <ScrollView contentContainerStyle={[ui.screen, styles.container]}>
+      <Text style={styles.title}>Curriculum</Text>
+      <Text style={styles.subtitle}>Browse requirements for every belt and rank.</Text>
+      <View style={styles.list}>
+        <CollapsibleSection title="TIGER BELTS">
+          {tigerRanks.map(renderRankRow)}
+        </CollapsibleSection>
+        <CollapsibleSection title="UNDERBELTS">
+          {underbelts.map(renderRankRow)}
+        </CollapsibleSection>
+        <CollapsibleSection title="BLACK BELTS">
+          {blackBelts.map(renderRankRow)}
+        </CollapsibleSection>
+      </View>
+    </ScrollView>
   );
 }
 

@@ -33,3 +33,12 @@ for (const [route, name, itemId] of [
     await expect(page.getByText("No video available", { exact: true })).toBeVisible();
   });
 }
+
+for (const category of ["kata", "weapon-kata", "partner-drill", "self-defense"]) {
+  test(`${category} handles an unknown entry without a broken player`, async ({ page }) => {
+    await page.goto(`/${category}/unknown-technique`, { waitUntil: "domcontentloaded" });
+    await expect(page.getByText("Item not found", { exact: true })).toBeVisible();
+    await expect(page.locator("video")).toHaveCount(0);
+    await expect(page.getByText("Description", { exact: true })).toHaveCount(0);
+  });
+}

@@ -1,6 +1,5 @@
-import React from "react";
 import { StyleSheet, View, ViewStyle } from "react-native";
-import { getBeltVisual } from "../data/rank";
+import { fullBlackBeltIds, getBeltVisual } from "../data/rank";
 
 type Props = {
   rankId: string;
@@ -10,20 +9,8 @@ type Props = {
   style?: ViewStyle;
 };
 
-const fullBlackNames = [
-  "shodan",
-  "nidan",
-  "sandan",
-  "yondan",
-  "godan",
-  "rokudan",
-  "shichidan",
-  "hachidan",
-  "kudan",
-];
-
 export default function BeltSwatch({ rankId, degree, width = 64, height = 14, style }: Props) {
-  const isBlack = rankId.endsWith("-ho") || fullBlackNames.includes(rankId);
+  const isBlack = rankId.endsWith("-ho") || fullBlackBeltIds.includes(rankId);
   const visual = getBeltVisual(rankId, degree);
 
   return (

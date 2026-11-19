@@ -3,35 +3,34 @@ export type Kata = {
   name: string;
   order: number;
   notes?: string;
-  minimumRankOrder?: number;
   isPartial?: boolean;
 };
 
 export const kataCatalog: Kata[] = [
-    { id: "zenkutsu-drill", name: "Zenkutsu Drill", order: 0, minimumRankOrder: -10 },
-    { id: "zenkutsu-drill-four", name: "Zenkutsu Drill (first 4 moves)", order: 0, minimumRankOrder: -10, isPartial: true },
-    { id: "zenkutsu-drill-six", name: "Zenkutsu Drill (first 6 moves)", order: 0, minimumRankOrder: -10, isPartial: true },
-    { id: "fukyugata-ichi", name: "Fukyugata Ichi", order: 1, minimumRankOrder: -5 },
-    { id: "cat-stance-chest-block-exercise", name: "Cat Stance Chest Block Exercise", order: 2, minimumRankOrder: -2 },
-    { id: "fukyugata-ni", name: "Fukyugata Ni", order: 3, minimumRankOrder: 2 },
-    { id: "oyo-tan-ren", name: "Oyo Tan Ren", order: 4, minimumRankOrder: 3 },
-    { id: "pinan-shodan", name: "Pinan Shodan", order: 5, minimumRankOrder: 4 },
-    { id: "pinan-nidan", name: "Pinan Nidan", order: 6, minimumRankOrder: 5 },
-    { id: "pinan-sandan", name: "Pinan Sandan", order: 7, minimumRankOrder: 6 },
-    { id: "pinan-yondan", name: "Pinan Yondan", order: 8, minimumRankOrder: 7 },
-    { id: "pinan-godan", name: "Pinan Godan", order: 9, minimumRankOrder: 9 },
-    { id: "naihanchi-shodan", name: "Naihanchi Shodan", order: 10, minimumRankOrder: 11 },
-    { id: "naihanchi-nidan", name: "Naihanchi Nidan", order: 11, minimumRankOrder: 11 },
-    { id: "naihanchi-sandan", name: "Naihanchi Sandan", order: 12, minimumRankOrder: 11 },
-    { id: "ananku", name: "Ananku", order: 13, minimumRankOrder: 12 },
-    { id: "fukyugata-sandan", name: "Fukyugata Sandan", order: 14, minimumRankOrder: 13 },
-    { id: "wankan", name: "Wankan", order: 15, minimumRankOrder: 14 },
-    { id: "rohai", name: "Rohai", order: 16, minimumRankOrder: 15 },
-    { id: "wanshu", name: "Wanshu", order: 17, minimumRankOrder: 16 },
-    { id: "passai", name: "Passai", order: 18, minimumRankOrder: 17 },
-    { id: "gojushiho", name: "Gojushiho", order: 19, minimumRankOrder: 18 },
-    { id: "chinto", name: "Chinto", order: 20, minimumRankOrder: 19 },
-    { id: "kusanku", name: "Kusanku", order: 21, minimumRankOrder: 20 },
+    { id: "zenkutsu-drill", name: "Zenkutsu Drill", order: 0 },
+    { id: "zenkutsu-drill-four", name: "Zenkutsu Drill (first 4 moves)", order: 0, isPartial: true },
+    { id: "zenkutsu-drill-six", name: "Zenkutsu Drill (first 6 moves)", order: 0, isPartial: true },
+    { id: "fukyugata-ichi", name: "Fukyugata Ichi", order: 1 },
+    { id: "cat-stance-chest-block-exercise", name: "Cat Stance Chest Block Exercise", order: 2 },
+    { id: "fukyugata-ni", name: "Fukyugata Ni", order: 3 },
+    { id: "oyo-tan-ren", name: "Oyo Tan Ren", order: 4 },
+    { id: "pinan-shodan", name: "Pinan Shodan", order: 5 },
+    { id: "pinan-nidan", name: "Pinan Nidan", order: 6 },
+    { id: "pinan-sandan", name: "Pinan Sandan", order: 7 },
+    { id: "pinan-yondan", name: "Pinan Yondan", order: 8 },
+    { id: "pinan-godan", name: "Pinan Godan", order: 9 },
+    { id: "naihanchi-shodan", name: "Naihanchi Shodan", order: 10 },
+    { id: "naihanchi-nidan", name: "Naihanchi Nidan", order: 11 },
+    { id: "naihanchi-sandan", name: "Naihanchi Sandan", order: 12 },
+    { id: "ananku", name: "Ananku", order: 13 },
+    { id: "fukyugata-sandan", name: "Fukyugata Sandan", order: 14 },
+    { id: "wankan", name: "Wankan", order: 15 },
+    { id: "rohai", name: "Rohai", order: 16 },
+    { id: "wanshu", name: "Wanshu", order: 17 },
+    { id: "passai", name: "Passai", order: 18 },
+    { id: "gojushiho", name: "Gojushiho", order: 19 },
+    { id: "chinto", name: "Chinto", order: 20 },
+    { id: "kusanku", name: "Kusanku", order: 21 },
 
 ];
 
@@ -42,6 +41,6 @@ export function getKataById(kataId: string): Kata | undefined {
 export function getKataItemById(kataId: string) {
   const kata = getKataById(kataId);
   return kata
-    ? { id: kata.id, name: kata.name, order: kata.order, minimumRankOrder: kata.minimumRankOrder }
+    ? { id: kata.id, name: kata.name, order: kata.order }
     : undefined;
 }

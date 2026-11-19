@@ -1,11 +1,10 @@
-import React from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { colors, ui } from "../theme";
 import { Ionicons } from "@expo/vector-icons";
 
 type ContentAccessRowProps = {
   label: string;
-  onPress?: () => void;
+  onPress: () => void;
 };
 
 export default function ContentAccessRow({ label, onPress }: ContentAccessRowProps) {
@@ -13,7 +12,6 @@ export default function ContentAccessRow({ label, onPress }: ContentAccessRowPro
     <Pressable
       accessibilityRole="button"
       accessibilityLabel={label}
-      disabled={!onPress}
       onPress={onPress}
       style={({ pressed }: { pressed: boolean }) => [
         ui.card,
@@ -21,7 +19,7 @@ export default function ContentAccessRow({ label, onPress }: ContentAccessRowPro
         pressed && styles.pressed,
       ]}
     >
-      <View style={styles.content}> 
+      <View style={styles.content}>
         <Text style={styles.label}>{label}</Text>
       </View>
       <View style={styles.chevron}>
