@@ -70,7 +70,7 @@ const additionalBlackBeltRanks: Rank[] = blackBeltDegrees.flatMap(({ degree, nam
           kata: [getKataItemById("wankan")!],
           weaponKata: [getWeaponKataItemById("sho-sai")!],
           partnerDrill: [],
-          selfDefense: [],
+          selfDefense: [getSelfDefenseItemById("knife-attack-3")!],
         }
       : degree === 2
       ? {
@@ -108,7 +108,7 @@ const additionalBlackBeltRanks: Rank[] = blackBeltDegrees.flatMap(({ degree, nam
           kata: [getKataItemById("rohai")!],
           weaponKata: [getWeaponKataItemById("shichi-no-kun-sho")!],
           partnerDrill: [],
-          selfDefense: [],
+          selfDefense: [getSelfDefenseItemById("knife-attack-4")!],
         }
       : degree === 2
       ? {
@@ -165,7 +165,6 @@ const tigerBeltRanks: Rank[] = tigerBeltColors.map((color, index) => {
   const tigerReqs: Partial<Record<RequirementCategory, CategoryRequirementInput>> =
     lower === "no belt"
       ? {
-
           kata: [getKataItemById("zenkutsu-drill-four")!],
           weaponKata: [getWeaponKataItemById("none")!],
           partnerDrill: [getPartnerDrillItemById("punching-blocking-drill")!],
@@ -179,8 +178,7 @@ const tigerBeltRanks: Rank[] = tigerBeltColors.map((color, index) => {
           selfDefense: [
             getSelfDefenseItemById("hello")!, 
             getSelfDefenseItemById("goodbye")!,
-            getSelfDefenseItemById("pull-back")!, 
-            getSelfDefenseItemById("zipper")!],
+          ],
         }
       : lower === "yellow"
       ? {
@@ -209,22 +207,14 @@ const tigerBeltRanks: Rank[] = tigerBeltColors.map((color, index) => {
           kata: [getKataItemById("fukyugata-ichi")!],
           weaponKata: [getWeaponKataItemById("hajime-no-tai-so")!],
           partnerDrill: [getPartnerDrillItemById("punching-blocking-drill")!],
-          selfDefense: [
-            getSelfDefenseItemById("hello")!, 
-            getSelfDefenseItemById("goodbye")!,
-            getSelfDefenseItemById("pull-back")!, 
-            getSelfDefenseItemById("zipper")!],
+          selfDefense: [getSelfDefenseItemById("cross-arm-grab")!],
         }
       : lower === "green"
       ? {
           kata: [getKataItemById("fukyugata-ichi")!],
           weaponKata: [getWeaponKataItemById("hajime-no-tai-so")!],
           partnerDrill: [getPartnerDrillItemById("punching-blocking-drill")!],
-          selfDefense: [
-            getSelfDefenseItemById("hello")!, 
-            getSelfDefenseItemById("goodbye")!,
-            getSelfDefenseItemById("pull-back")!, 
-            getSelfDefenseItemById("zipper")!],
+          selfDefense: [getSelfDefenseItemById("double-wrist-grab")!],
         }
       : lower === "purple"
       ? {
@@ -232,21 +222,16 @@ const tigerBeltRanks: Rank[] = tigerBeltColors.map((color, index) => {
           weaponKata: [getWeaponKataItemById("hajime-no-tai-so")!],
           partnerDrill: [getPartnerDrillItemById("punching-blocking-drill")!],
           selfDefense: [
-            getSelfDefenseItemById("hello")!, 
-            getSelfDefenseItemById("goodbye")!,
-            getSelfDefenseItemById("pull-back")!, 
-            getSelfDefenseItemById("zipper")!],
+            getSelfDefenseItemById("cross-arm-grab")!, 
+            getSelfDefenseItemById("double-wrist-grab")!
+          ],
         }
       : lower === "brown"
       ? {
           kata: [getKataItemById("cat-stance-chest-block-exercise")!],
           weaponKata: [getWeaponKataItemById("hajime-no-tai-so")!],
           partnerDrill: [getPartnerDrillItemById("punching-blocking-drill")!],
-          selfDefense: [
-            getSelfDefenseItemById("hello")!, 
-            getSelfDefenseItemById("goodbye")!,
-            getSelfDefenseItemById("pull-back")!, 
-            getSelfDefenseItemById("zipper")!],
+          selfDefense: [getSelfDefenseItemById("defense-against-a-kick")!],
         }
       : lower === "red"
       ? {
@@ -254,10 +239,9 @@ const tigerBeltRanks: Rank[] = tigerBeltColors.map((color, index) => {
           weaponKata: [getWeaponKataItemById("hajime-no-tai-so")!],
           partnerDrill: [getPartnerDrillItemById("punching-blocking-drill")!],
           selfDefense: [
-            getSelfDefenseItemById("hello")!, 
-            getSelfDefenseItemById("goodbye")!,
-            getSelfDefenseItemById("pull-back")!, 
-            getSelfDefenseItemById("zipper")!],
+            getSelfDefenseItemById("cross-arm-grab")!, 
+            getSelfDefenseItemById("double-wrist-grab")!
+          ],
         }
       : { kata: [], weaponKata: [], partnerDrill: [], selfDefense: [] };
 
@@ -322,7 +306,7 @@ const rankSpecs: RankSpec[] = [
         getPartnerDrillItemById("fighting-attack-2")!,
         getPartnerDrillItemById("fighting-attack-3-no-takedown")!,
       ],
-      selfDefense: [],
+      selfDefense: [getSelfDefenseItemById("front-choke")!],
     },
   },
   {
@@ -350,8 +334,11 @@ const rankSpecs: RankSpec[] = [
     requirements: {
       kata: [getKataItemById("pinan-shodan")! ],
       weaponKata: [getWeaponKataItemById("haku-sho-no-kun-half")!],
-      partnerDrill: [getPartnerDrillItemById("uke-waza-1")!, getPartnerDrillItemById("uke-waza-2")!],
-      selfDefense: [],
+      partnerDrill: [
+        getPartnerDrillItemById("uke-waza-1")!, 
+        getPartnerDrillItemById("uke-waza-2")!
+      ],
+      selfDefense: [getSelfDefenseItemById("single-arm-grab-advanced")!],
     },
   },
   {
@@ -366,7 +353,7 @@ const rankSpecs: RankSpec[] = [
         getPartnerDrillItemById("uke-waza-3")!,
         getPartnerDrillItemById("uke-waza-4")!,
       ],
-      selfDefense: [getSelfDefenseItemById("front-choke-idk")!],
+      selfDefense: [getSelfDefenseItemById("single-lapel")!],
     },
   },
   {
@@ -381,7 +368,7 @@ const rankSpecs: RankSpec[] = [
         getPartnerDrillItemById("uke-waza-5")!,
         getPartnerDrillItemById("uke-waza-6")!,
       ],
-      selfDefense: [getSelfDefenseItemById("single-lapel-idk")!],
+      selfDefense: [getSelfDefenseItemById("double-lapel")!],
     },
   },
   {
@@ -394,8 +381,8 @@ const rankSpecs: RankSpec[] = [
       weaponKata: [getWeaponKataItemById("bojitsu-shodan")!],
       partnerDrill: [getPartnerDrillItemById("uke-waza-7")!],
       selfDefense: [
-        getSelfDefenseItemById("full-nelson")!,
         getSelfDefenseItemById("side-headlock")!,
+        getSelfDefenseItemById("full-nelson")!,
       ],
     },
   },
@@ -414,7 +401,11 @@ const rankSpecs: RankSpec[] = [
         getPartnerDrillItemById("promise-kumite-1")!, 
         getPartnerDrillItemById("promise-kumite-2")!
       ],
-      selfDefense: [],
+      selfDefense: [
+        getSelfDefenseItemById("rear-strangle-hold")!,
+        getSelfDefenseItemById("double-wrist-grab-advanced")!,
+        getSelfDefenseItemById("front-choke-advanced")!,
+      ],
     },
   },
   {
@@ -429,7 +420,7 @@ const rankSpecs: RankSpec[] = [
         getPartnerDrillItemById("promise-kumite-3")!, 
         getPartnerDrillItemById("promise-kumite-4")!
       ],
-      selfDefense: [],
+      selfDefense: [getSelfDefenseItemById("bear-hug-arms-free")!],
     },
   },
   {
@@ -443,10 +434,11 @@ const rankSpecs: RankSpec[] = [
       weaponKata: [
         getWeaponKataItemById("tonfa-kihon", { name: "Tonfa Kihon 1-7" })!,
       ],
-      partnerDrill: [getPartnerDrillItemById("promise-kumite-5")!, 
+      partnerDrill: [
+        getPartnerDrillItemById("promise-kumite-5")!, 
         getPartnerDrillItemById("promise-kumite-6")!
       ],
-      selfDefense: [],
+      selfDefense: [getSelfDefenseItemById("bear-hug-arms-pinned")!],
     },
   },
   {
@@ -460,7 +452,10 @@ const rankSpecs: RankSpec[] = [
         getWeaponKataItemById("tonfa-kihon", { name: "Tonfa Kihon 8-11" })!,
       ],
       partnerDrill: [getPartnerDrillItemById("promise-kumite-7")!],
-      selfDefense: [],
+      selfDefense: [
+        getSelfDefenseItemById("single-hand-throat-grab")!,
+        getSelfDefenseItemById("hammer-lock")!,
+      ],
     },
   },
   {
@@ -480,7 +475,7 @@ const rankSpecs: RankSpec[] = [
         getPartnerDrillItemById("promise-kumite-6")!,
         getPartnerDrillItemById("promise-kumite-7")!
       ],
-      selfDefense: [],
+      selfDefense: [getSelfDefenseItemById("knife-attack-1")!],
     },
   },
   {
@@ -495,7 +490,7 @@ const rankSpecs: RankSpec[] = [
         getWeaponKataItemById("sai-kihon")!,
       ],
       partnerDrill: [],
-      selfDefense: [],
+      selfDefense: [getSelfDefenseItemById("knife-attack-2")!],
     },
   },
 
