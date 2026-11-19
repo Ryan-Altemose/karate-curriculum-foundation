@@ -2,7 +2,7 @@ import { StyleSheet, Text, View, Pressable, ScrollView, Image } from "react-nati
 import { router } from "expo-router";
 import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { colors, ui } from "../src/theme";
+import { categoryColors, colors, ui } from "../src/theme";
 
 export default function HomeScreen() {
   return (
@@ -133,16 +133,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   kataButton: {
-    backgroundColor: "#ad2939",
+    backgroundColor: categoryColors.kata.accent,
   },
   partnerButton: {
-    backgroundColor: "#bf6f24",
+    backgroundColor: categoryColors.partnerDrill.accent,
   },
   weaponButton: {
-    backgroundColor: colors.ink,
+    backgroundColor: categoryColors.weaponKata.accent,
   },
   selfDefenseButton: {
-    backgroundColor: "#714da2",
+    backgroundColor: categoryColors.selfDefense.accent,
   },
   buttonText: {
     color: "#fff",

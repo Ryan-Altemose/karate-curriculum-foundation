@@ -1,4 +1,4 @@
-import { colors, ui } from "../../src/theme";
+import { categoryColors, colors, ui } from "../../src/theme";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { getRankById } from "../../src/data/curriculum";
@@ -49,6 +49,7 @@ export default function RankRequirementsScreen() {
                 <Text style={styles.emptyRequirement}>{reviewContent[requirement.category].message}</Text>
                 <ContentAccessRow
                   variant="outline"
+                  tone={categoryColors[requirement.category]}
                   label={reviewContent[requirement.category].label}
                   onPress={() => router.push(categoryPaths[requirement.category])}
                 />

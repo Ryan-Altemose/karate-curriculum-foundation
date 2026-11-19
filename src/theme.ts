@@ -1,4 +1,5 @@
 import { StyleSheet } from "react-native";
+import type { RequirementCategory } from "./data/rank";
 
 export const colors = {
   background: "#FAFAFA",
@@ -9,6 +10,13 @@ export const colors = {
   accent: "#ad2939",
   accentSoft: "#f7e9eb",
   inset: "#eeede9",
+};
+
+export const categoryColors: Record<RequirementCategory, { accent: string; text: string }> = {
+  kata: { accent: colors.accent, text: colors.accent },
+  weaponKata: { accent: colors.ink, text: colors.ink },
+  partnerDrill: { accent: "#bf6f24", text: "#955018" },
+  selfDefense: { accent: "#714da2", text: "#714da2" },
 };
 
 export const ui = StyleSheet.create({

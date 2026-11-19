@@ -6,9 +6,12 @@ type ContentAccessRowProps = {
   label: string;
   onPress: () => void;
   variant?: "solid" | "outline";
+  tone?: { accent: string; text: string };
 };
 
-export default function ContentAccessRow({ label, onPress, variant = "solid" }: ContentAccessRowProps) {
+export default function ContentAccessRow({ label, onPress, variant = "solid", tone }: ContentAccessRowProps) {
+  const outlineTone = variant === "outline" ? tone : undefined;
+
   return (
     <Pressable
       accessibilityRole="button"
@@ -18,17 +21,23 @@ export default function ContentAccessRow({ label, onPress, variant = "solid" }: 
         ui.card,
         styles.row,
         variant === "outline" && styles.outline,
+        outlineTone && {
+          backgroundColor: `${outlineTone.accent}0D`,
+          borderColor: `${outlineTone.accent}66`,
+          borderLeftWidth: 3,
+          borderLeftColor: outlineTone.accent,
+        },
         pressed && styles.pressed,
       ]}
     >
       <View style={styles.content}>
-        <Text style={styles.label}>{label}</Text>
+        <Text style={[styles.label, outlineTone && { color: outlineTone.text }]}>{label}</Text>
       </View>
-      <View style={styles.chevron}>
+      <View style={[styles.chevron, outlineTone && { backgroundColor: `${outlineTone.accent}14` }]}>
         <Ionicons
           name="chevron-forward"
           size={18}
-          color={colors.muted}
+          color={outlineTone?.text ?? colors.muted}
         />
       </View>
     </Pressable>
