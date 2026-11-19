@@ -36,7 +36,7 @@ export default function PageTransition({ children }: PropsWithChildren) {
     const offset = depth < last.depth ? -32 : 32;
     const animation = element.animate(
       [{ transform: `translateX(${offset}px)` }, { transform: "translateX(0px)" }],
-      { duration: 180, easing: "cubic-bezier(0.22, 1, 0.36, 1)" },
+      { duration: 450, easing: "cubic-bezier(0.25, 0.1, 0.25, 1)" },
     );
     return () => animation.cancel();
   }, [key, depth]);

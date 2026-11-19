@@ -12,6 +12,10 @@ export type PartnerDrill = {
 export const partnerDrillCatalog: PartnerDrill[] = [
   { id: "conditioning-drills", name: "Conditioning Drills", order: 0 },
   { id: "punching-blocking-drill", name: "Punching Blocking Drill", order: 0, groupId: "conditioning-drills" },
+  { id: "three-point-arm-training", name: "Three Point Arm Training", order: 1, groupId: "conditioning-drills" },
+  { id: "high-low-blocking-drill", name: "High-Low Blocking Drill", order: 2, groupId: "conditioning-drills" },
+  { id: "inside-outside-blocking-drill", name: "Inside-Outside Blocking Drill", order: 3, groupId: "conditioning-drills" },
+  { id: "circle-kicking-blocking-drill", name: "Circle Kicking Blocking Drill", order: 4, groupId: "conditioning-drills" },
   { id: "fighting-attacks", name: "Fighting Attacks", order: 1 },
   { id: "fighting-attack-1", name: "Fighting Attack 1", order: 1, groupId: "fighting-attacks" },
   { id: "fighting-attack-2", name: "Fighting Attack 2", order: 2, groupId: "fighting-attacks" },

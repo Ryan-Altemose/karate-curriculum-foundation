@@ -42,8 +42,8 @@ test("pages slide forward and reverse for both header and browser Back", async (
   expect(recorded.map((slide) => Math.sign(slide.from))).toEqual([1, 1, -1, -1]);
   for (const slide of recorded) {
     expect(slide.to).toBe(0);
-    expect(slide.duration).toBeGreaterThanOrEqual(100);
-    expect(slide.duration).toBeLessThanOrEqual(300);
+    expect(slide.duration).toBeGreaterThanOrEqual(350);
+    expect(slide.duration).toBeLessThanOrEqual(550);
     expect(slide.changesOpacity).toBe(false);
   }
 });

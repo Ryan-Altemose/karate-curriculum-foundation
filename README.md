@@ -24,7 +24,7 @@ blank screens while fetching individual routes. Videos are still separate assets
 and load when their player is opened. Adding a home-screen icon does not cache
 the curriculum or videos for offline use.
 
-Web navigation uses a short directional slide in `PageTransition.web.tsx`, while
+Web navigation uses a 450 ms directional slide in `PageTransition.web.tsx`, while
 the wave background stays fixed. Browser reduced-motion preferences disable the
 slide. Native builds retain the navigator's normal platform transitions.
 
@@ -52,6 +52,20 @@ npm run preview:web
 Open <http://127.0.0.1:8083> on this computer. The preview supports refreshing detail
 URLs directly. Its loopback address is not accessible from a phone. The web export
 is written to ignored `dist-web/`, separate from the native `dist/` export.
+
+To review the actual web animation on your phone before deploying, run:
+
+```sh
+npm run build:web
+npm run preview:web:lan
+```
+
+Connect your phone and computer to the same Wi-Fi and open the server's Network
+URL in the phone's browser (normally port 8084; use the port printed by the server).
+Use the computer's local network IP, not
+`localhost` on the phone. This serves the same production export used by
+Cloudflare. Expo Go uses native iPhone transitions and does not preview the web
+animation. Rebuild the export after editing the animation before reviewing again.
 
 Review the home screen, all category lists, search, reverse sorting, belt
 requirements, and grouped weapon navigation. Gojushiho should play the compressed
