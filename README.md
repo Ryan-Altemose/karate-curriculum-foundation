@@ -123,6 +123,10 @@ changes to the video/description layout should be made there.
 
 Curriculum is maintained in `src/data/`. Catalog sequence determines browsing order;
 rank requirements are defined separately in `src/data/curriculum.ts`.
+From Ikkyu onward, an empty category array means review of all previously learned
+material. The curriculum builder sets `reviewPrevious` and the rank page shows a
+button to that category's full list. Nonempty arrays still show their specific
+techniques; earlier ranks keep their existing empty-category placeholder.
 Weapon and partner-drill `groupId` references define intermediate pages;
 rank requirements can supply a display name while retaining the same destination.
 To add another conditioning drill, add its entry to `src/data/partner-drill.ts`

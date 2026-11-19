@@ -19,6 +19,7 @@ export type RankRequirement = {
   order: number;
   items: CurriculumItem[];
   notes?: string;
+  reviewPrevious?: boolean;
 };
 
 export type RankType =

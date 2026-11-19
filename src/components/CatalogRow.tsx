@@ -2,19 +2,13 @@ import { StyleSheet, Text, View } from "react-native";
 import ContentAccessRow from "./ContentAccessRow";
 import { useRouter } from "expo-router";
 import type { RequirementCategory } from "../data/rank";
+import { categoryPaths } from "../navigation";
 
 type CatalogItem = { id: string; name: string };
 
 type Props = {
   item: CatalogItem;
   category: RequirementCategory;
-};
-
-const categoryPaths: Record<RequirementCategory, string> = {
-  kata: "/kata",
-  partnerDrill: "/partner-drill",
-  weaponKata: "/weapon-kata",
-  selfDefense: "/self-defense",
 };
 
 export default function CatalogRow({ item, category }: Props) {

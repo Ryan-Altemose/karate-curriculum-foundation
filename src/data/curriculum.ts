@@ -19,9 +19,12 @@ type RankSpec = Omit<Rank, "requirements"> & {
   requirements: Partial<Record<RequirementCategory, CategoryRequirementInput>>;
 };
 
+const IKKYU_ORDER = 13;
+
 function buildRequirements(
   rankId: string,
-  requirements: Partial<Record<RequirementCategory, CategoryRequirementInput>>
+  requirements: Partial<Record<RequirementCategory, CategoryRequirementInput>>,
+  rankOrder: number
 ): Rank["requirements"] {
   return curriculumCategories
     .map(({ id, name, order }) => {
@@ -41,6 +44,9 @@ function buildRequirements(
         order,
         items: filteredItems,
         notes,
+        // From Ikkyu onward an explicitly empty category means cumulative review.
+        // Use the original array so a missing lookup cannot become a review link.
+        reviewPrevious: rankOrder >= IKKYU_ORDER && items.length === 0,
       };
     })
     .filter((requirement): requirement is NonNullable<typeof requirement> => Boolean(requirement));
@@ -63,7 +69,7 @@ const additionalBlackBeltRanks: Rank[] = blackBeltDegrees.flatMap(({ degree, nam
   const fullId = name.toLowerCase();
   const firstOrder = 14 + (degree - 1) * 2;
 
-  // provide example requirements for the first two degrees; later degrees remain empty templates
+  // Empty categories at these ranks require review of the full category.
   const conditionalReqs: Partial<Record<RequirementCategory, CategoryRequirementInput>> =
     degree === 1
       ? {
@@ -96,7 +102,7 @@ const additionalBlackBeltRanks: Rank[] = blackBeltDegrees.flatMap(({ degree, nam
       : degree === 5
       ? {
           kata: [],
-          weaponKata: [],
+          weaponKata: [getWeaponKataItemById("shikina-no-tonfa")!],
           partnerDrill: [],
           selfDefense: [],
         }
@@ -120,14 +126,21 @@ const additionalBlackBeltRanks: Rank[] = blackBeltDegrees.flatMap(({ degree, nam
       : degree === 3
       ? {
           kata: [getKataItemById("chinto")!],
-          weaponKata: [getWeaponKataItemById("suji-no-kun")!],
+          weaponKata: [getWeaponKataItemById("san-sai")!],
           partnerDrill: [],
           selfDefense: [],
         }
       : degree === 4
       ? {
           kata: [],
-          weaponKata: [],
+          weaponKata: [getWeaponKataItemById("fuguzatsu-bo-kata-shodan")!],
+          partnerDrill: [],
+          selfDefense: [],
+        }
+      : degree === 5
+      ? {
+          kata: [],
+          weaponKata: [getWeaponKataItemById("futagi")!],
           partnerDrill: [],
           selfDefense: [],
         }
@@ -141,7 +154,7 @@ const additionalBlackBeltRanks: Rank[] = blackBeltDegrees.flatMap(({ degree, nam
       order: firstOrder,
       type: "conditionalBlackBelt",
       degree,
-      requirements: buildRequirements(conditionalId, conditionalReqs),
+      requirements: buildRequirements(conditionalId, conditionalReqs, firstOrder),
     },
     {
       id: fullId,
@@ -150,7 +163,7 @@ const additionalBlackBeltRanks: Rank[] = blackBeltDegrees.flatMap(({ degree, nam
       order: firstOrder + 1,
       type: "fullBlackBelt",
       degree,
-      requirements: buildRequirements(fullId, fullReqs),
+      requirements: buildRequirements(fullId, fullReqs, firstOrder + 1),
     },
   ];
 });
@@ -251,7 +264,7 @@ const tigerBeltRanks: Rank[] = tigerBeltColors.map((color, index) => {
     beltDescription: "Camouflage-patterned Tiger belt",
     order: index - tigerBeltColors.length,
     type: "tigerBelt",
-    requirements: buildRequirements(id, tigerReqs),
+    requirements: buildRequirements(id, tigerReqs, index - tigerBeltColors.length),
   };
 });
 
@@ -482,7 +495,7 @@ const rankSpecs: RankSpec[] = [
     id: "red-black",
     name: "Ikkyu",
     beltDescription: "Half red and black belt",
-    order: 13,
+    order: IKKYU_ORDER,
     type: "underBelt",
     requirements: {
       kata: [getKataItemById("fukyugata-sandan")!],
@@ -500,7 +513,7 @@ export const curriculum: Rank[] = [
   ...tigerBeltRanks,
   ...rankSpecs.map((rank) => ({
     ...rank,
-    requirements: buildRequirements(rank.id, rank.requirements),
+    requirements: buildRequirements(rank.id, rank.requirements, rank.order),
   })),
   ...additionalBlackBeltRanks,
 ];

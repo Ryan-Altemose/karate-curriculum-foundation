@@ -5,9 +5,10 @@ import { Ionicons } from "@expo/vector-icons";
 type ContentAccessRowProps = {
   label: string;
   onPress: () => void;
+  variant?: "solid" | "outline";
 };
 
-export default function ContentAccessRow({ label, onPress }: ContentAccessRowProps) {
+export default function ContentAccessRow({ label, onPress, variant = "solid" }: ContentAccessRowProps) {
   return (
     <Pressable
       accessibilityRole="button"
@@ -16,6 +17,7 @@ export default function ContentAccessRow({ label, onPress }: ContentAccessRowPro
       style={({ pressed }: { pressed: boolean }) => [
         ui.card,
         styles.row,
+        variant === "outline" && styles.outline,
         pressed && styles.pressed,
       ]}
     >
@@ -34,6 +36,11 @@ export default function ContentAccessRow({ label, onPress }: ContentAccessRowPro
 }
 
 const styles = StyleSheet.create({
+  outline: {
+    backgroundColor: "transparent",
+    borderColor: "#d4d4d4",
+    boxShadow: "none",
+  },
   row: {
     minHeight: 72,
     paddingHorizontal: 18,

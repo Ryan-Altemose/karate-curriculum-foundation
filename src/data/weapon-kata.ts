@@ -57,6 +57,9 @@ export const weaponKataCatalog: WeaponKata[] = [
     { id: "suji-no-kun", name: "Suji No Kun", order: 40 },
     { id: "san-sai", name: "San Sai", order: 41 },
     { id: "mizoniatoshi", name: "Mizoniatoshi", order: 42 },
+    { id: "fuguzatsu-bo-kata-shodan", name: "Fuguzatsu Bo Kata Shodan", order: 43 },
+    { id: "shikina-no-tonfa", name: "Shikina No Tonfa", order: 44 },
+    { id: "futagi", name: "Futagi", order: 45 },
 ];
 
 export function getWeaponKataById(weaponKataId: string): WeaponKata | undefined {

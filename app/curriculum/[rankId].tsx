@@ -1,12 +1,23 @@
 import { colors, ui } from "../../src/theme";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import { useLocalSearchParams } from "expo-router";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { getRankById } from "../../src/data/curriculum";
 import CatalogRow from "../../src/components/CatalogRow";
 import BeltSwatch from "../../src/components/BeltSwatch";
+import ContentAccessRow from "../../src/components/ContentAccessRow";
+import type { RequirementCategory } from "../../src/data/rank";
+import { categoryPaths } from "../../src/navigation";
+
+const reviewContent: Record<RequirementCategory, { label: string; message: string }> = {
+  kata: { label: "View All Kata", message: "Review previously learned kata." },
+  weaponKata: { label: "View All Weapon Kata", message: "Review previously learned weapon kata." },
+  partnerDrill: { label: "View All Partner Drills", message: "Review previously learned partner drills." },
+  selfDefense: { label: "View All Self-Defense", message: "Review previously learned self-defense techniques." },
+};
 
 export default function RankRequirementsScreen() {
   const { rankId } = useLocalSearchParams<{ rankId: string }>();
+  const router = useRouter();
   const rank = getRankById(rankId);
 
   if (!rank) {
@@ -33,6 +44,15 @@ export default function RankRequirementsScreen() {
               requirement.items.map((item) => (
                 <CatalogRow key={item.id} item={item} category={requirement.category} />
               ))
+            ) : requirement.reviewPrevious ? (
+              <>
+                <Text style={styles.emptyRequirement}>{reviewContent[requirement.category].message}</Text>
+                <ContentAccessRow
+                  variant="outline"
+                  label={reviewContent[requirement.category].label}
+                  onPress={() => router.push(categoryPaths[requirement.category])}
+                />
+              </>
             ) : (
               <Text style={styles.emptyRequirement}>Curriculum details will be added soon.</Text>
             )}
