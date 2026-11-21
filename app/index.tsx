@@ -4,7 +4,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { categoryColors, colors, ui } from "../src/theme";
 
-const BELT_GOLD = "#e3b752";
+export const BELT_GOLD = "#e3b752";
 
 export default function HomeScreen() {
   return (

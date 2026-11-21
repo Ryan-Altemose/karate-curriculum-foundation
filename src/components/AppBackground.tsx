@@ -7,6 +7,7 @@ const TILE_WIDTH = 96;
 const TILE_HEIGHT = 48;
 const RADIUS = TILE_WIDTH / 2;
 const RINGS = [48, 38, 28, 18, 8];
+const WAVE_COLOR = "#80cff4";
 
 function semicircle(x: number, y: number, radius: number) {
   return `M ${x - radius} ${y} A ${radius} ${radius} 0 0 1 ${x + radius} ${y}`;
@@ -23,6 +24,7 @@ const fans = [0, 1, 2, 3, 4].flatMap((row) =>
 export default function AppBackground({ children }: PropsWithChildren) {
   const { height } = useWindowDimensions();
   const waveHeight = Math.min(360, Math.max(160, height * 0.44));
+  
 
   return (
     <View testID="app-background" style={styles.container}>
@@ -41,7 +43,7 @@ export default function AppBackground({ children }: PropsWithChildren) {
                 <G key={`${x}-${y}`}>
                   <Path d={`${semicircle(x, y, RADIUS)} Z`} fill={colors.background} />
                   {RINGS.map((radius) => (
-                    <Path key={radius} d={semicircle(x, y, radius)} fill="none" stroke={colors.muted} strokeWidth={1.25} />
+                    <Path key={radius} d={semicircle(x, y, radius)} fill="none" stroke={WAVE_COLOR} strokeWidth={1.25} />
                   ))}
                 </G>
               ))}
@@ -52,7 +54,7 @@ export default function AppBackground({ children }: PropsWithChildren) {
               <Stop offset="100%" stopColor={colors.background} stopOpacity={0} />
             </LinearGradient>
           </Defs>
-          <Rect width="100%" height="100%" fill="url(#seigaiha)" opacity={0.18} />
+          <Rect width="100%" height="100%" fill="url(#seigaiha)"  />
           <Rect width="100%" height="100%" fill="url(#waveFade)" />
         </Svg>
       </View>
