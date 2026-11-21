@@ -4,7 +4,7 @@ import { Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { categoryColors, colors, ui } from "../src/theme";
 
-const BELT_GOLD = "#c9a34d";
+const BELT_GOLD = "#e3b752";
 
 export default function HomeScreen() {
   return (
@@ -30,7 +30,7 @@ export default function HomeScreen() {
                 <Text style={styles.buttonText}>View All Belts</Text>
               </View>
               <View style={styles.curriculumChevron}>
-                <Ionicons name="chevron-forward" size={20} color={colors.surface} />
+                <Ionicons name="chevron-forward" size={20} color={BELT_GOLD} />
               </View>
             </View>
           </Pressable>
@@ -83,7 +83,7 @@ const styles = StyleSheet.create({
   curriculumButton: {
     minHeight: 104,
     backgroundColor: colors.ink,
-    borderColor: colors.ink,
+    borderColor: BELT_GOLD,
     borderLeftWidth: 6,
     borderLeftColor: BELT_GOLD,
     overflow: "hidden",

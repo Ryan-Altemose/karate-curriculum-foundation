@@ -10,6 +10,7 @@ export const colors = {
   accent: "#ad2939",
   accentSoft: "#f7e9eb",
   inset: "#eeede9",
+  test: "#f0eaf3",
 };
 
 export const categoryColors: Record<RequirementCategory, { accent: string; text: string }> = {
